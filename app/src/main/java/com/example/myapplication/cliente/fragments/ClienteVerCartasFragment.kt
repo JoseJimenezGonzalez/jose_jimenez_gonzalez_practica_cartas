@@ -1,25 +1,23 @@
-package com.example.myapplication.usuario.fragments
+package com.example.myapplication.cliente.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.myapplication.R
-import com.example.myapplication.databinding.FragmentClienteEventosBinding
-import com.example.myapplication.databinding.FragmentClienteHomeBinding
+import com.example.myapplication.databinding.FragmentClienteVerCartasBinding
 
 
-class ClienteEventosFragment : Fragment() {
+class ClienteVerCartasFragment : Fragment() {
 
-    private var _binding: FragmentClienteEventosBinding? = null
+    private var _binding: FragmentClienteVerCartasBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentClienteEventosBinding.inflate(inflater, container, false)
+        _binding = FragmentClienteVerCartasBinding.inflate(inflater, container, false)
         return binding.root
     }
 
