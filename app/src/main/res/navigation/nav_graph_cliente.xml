@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph_cliente">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_cliente"
+    app:startDestination="@id/clienteHomeFragment">
 
+    <fragment
+        android:id="@+id/clienteComprarCartasFragment"
+        android:name="com.example.myapplication.usuario.fragments.ClienteComprarCartasFragment"
+        android:label="fragment_cliente_comprar_cartas"
+        tools:layout="@layout/fragment_cliente_comprar_cartas" />
+    <fragment
+        android:id="@+id/clienteEventosFragment"
+        android:name="com.example.myapplication.usuario.fragments.ClienteEventosFragment"
+        android:label="fragment_cliente_eventos"
+        tools:layout="@layout/fragment_cliente_eventos" />
+    <fragment
+        android:id="@+id/clienteHomeFragment"
+        android:name="com.example.myapplication.usuario.fragments.ClienteHomeFragment"
+        android:label="fragment_cliente_home"
+        tools:layout="@layout/fragment_cliente_home" />
+    <fragment
+        android:id="@+id/clienteVerCartasFragment"
+        android:name="com.example.myapplication.usuario.fragments.ClienteVerCartasFragment"
+        android:label="fragment_cliente_ver_cartas"
+        tools:layout="@layout/fragment_cliente_ver_cartas" />
 </navigation>
