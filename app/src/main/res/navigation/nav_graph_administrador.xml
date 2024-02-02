@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_administrador"
+    app:startDestination="@id/administradorHomeFragment">
+
+    <fragment
+        android:id="@+id/administradorGestionarEventosFragment"
+        android:name="com.example.myapplication.administrador.fragments.AdministradorGestionarEventosFragment"
+        android:label="fragment_administrador_gestionar_eventos"
+        tools:layout="@layout/fragment_administrador_gestionar_eventos" />
+    <fragment
+        android:id="@+id/administradorGestionarVentasFragment"
+        android:name="com.example.myapplication.administrador.fragments.AdministradorGestionarVentasFragment"
+        android:label="fragment_administrador_gestionar_ventas"
+        tools:layout="@layout/fragment_administrador_gestionar_ventas" />
+    <fragment
+        android:id="@+id/administradorHomeFragment"
+        android:name="com.example.myapplication.administrador.fragments.AdministradorHomeFragment"
+        android:label="fragment_administrador_home"
+        tools:layout="@layout/fragment_administrador_home" />
+</navigation>
