@@ -1,12 +1,12 @@
 package com.example.myapplication
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.administrador.PrincipalAdministradorActivity
-import com.example.myapplication.databinding.ActivityIniciarSesionBinding
 import com.example.myapplication.cliente.PrincipalClienteActivity
+import com.example.myapplication.databinding.ActivityIniciarSesionBinding
 
 class IniciarSesionActivity : AppCompatActivity() {
 
@@ -29,7 +29,7 @@ class IniciarSesionActivity : AppCompatActivity() {
         binding.btnIniciarSesion.setOnClickListener {
             val correo = binding.tietCorreo.text.toString()
             val password = binding.tietPassword.text.toString()
-            if(correo == "usuario" && password == "usuario"){
+            if(correo == "cliente" && password == "cliente"){
                 val intent = Intent(this, PrincipalClienteActivity::class.java)
                 startActivity(intent)
             }else if(correo == "administrador" && password == "administrador"){
