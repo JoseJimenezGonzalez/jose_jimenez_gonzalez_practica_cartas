@@ -20,4 +20,9 @@
         android:name="com.example.myapplication.administrador.fragments.AdministradorHomeFragment"
         android:label="fragment_administrador_home"
         tools:layout="@layout/fragment_administrador_home" />
+    <fragment
+        android:id="@+id/administradorGestionarCartasFragment"
+        android:name="com.example.myapplication.administrador.fragments.AdministradorGestionarCartasFragment"
+        android:label="fragment_administrador_gestionar_cartas"
+        tools:layout="@layout/fragment_administrador_gestionar_cartas" />
 </navigation>

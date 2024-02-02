@@ -12,6 +12,11 @@
         android:title="Ventas" />
 
     <item
+        android:id="@+id/administradorGestionarCartasFragment"
+        android:icon="@drawable/ic_cards"
+        android:title="Cartas" />
+
+    <item
         android:id="@+id/administradorGestionarEventosFragment"
         android:icon="@drawable/ic_events"
         android:title="Eventos" />
