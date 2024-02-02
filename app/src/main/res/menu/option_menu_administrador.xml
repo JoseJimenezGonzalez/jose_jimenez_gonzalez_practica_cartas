@@ -7,12 +7,12 @@
         android:title="Home" />
 
     <item
-        android:id="@+id/clienteComprarCartasFragment"
+        android:id="@+id/administradorGestionarVentasFragment"
         android:icon="@drawable/ic_buy_cart"
         android:title="Ventas" />
 
     <item
-        android:id="@+id/clienteEventosFragment"
+        android:id="@+id/administradorGestionarEventosFragment"
         android:icon="@drawable/ic_events"
         android:title="Eventos" />
 
