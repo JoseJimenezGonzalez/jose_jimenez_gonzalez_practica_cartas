@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/fourtFragment"
+        android:icon="@drawable/ic_home"
+        android:title="Home" />
+    <item
+        android:id="@+id/secondFragment"
+        android:icon="@drawable/ic_search"
+        android:title="Buscador" />
+
+    <item
+        android:id="@+id/thirdFragment"
+        android:icon="@drawable/ic_buy_cart"
+        android:title="Comprar" />
+    <item
+        android:id="@+id/fourthFragment"
+        android:icon="@drawable/ic_events"
+        android:title="Eventos" />
+</menu>
