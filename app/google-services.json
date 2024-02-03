@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "477254152425",
+    "project_id": "mi-practica-final",
+    "storage_bucket": "mi-practica-final.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:477254152425:android:2e2d0f9af9129073c34078",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1jAJL0AKc_2lVk3luUW7Mtx9qaU6yTtM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
