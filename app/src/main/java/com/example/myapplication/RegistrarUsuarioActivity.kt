@@ -1,20 +1,28 @@
 package com.example.myapplication
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
+import android.widget.Toast
+import com.example.myapplication.data.model.Usuario
 import com.example.myapplication.databinding.ActivityIniciarSesionBinding
 import com.example.myapplication.databinding.ActivityRegistrarUsuarioBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class RegistrarUsuarioActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegistrarUsuarioBinding
 
     private lateinit var auth: FirebaseAuth
+
+    lateinit var dbRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,7 +77,7 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
             }
             //Passwords
             //Tienen que ser iguales
-            if(password === repeatPassword){
+            if(password == repeatPassword){
                 sonPasswordIguales = true
                 binding.tietPassword.error = null
                 binding.tietRepetirPassword.error = null
@@ -95,8 +103,39 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
 
             }
 
-
+            if(esNombreCorrecto && esApellidoCorrecto && esEmailCorrecto && sonPasswordIguales && tienePasswordLongitudCorrecta && tieneRepetirPasswordLongitudCorrecta){
+                auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            // Registro ok
+                            Toast.makeText(baseContext, "Registro completado.", Toast.LENGTH_SHORT,).show()
+                            //Vamos a registrarlo en nuetra base de datos
+                            val user = auth.currentUser
+                            val idUsuario = user?.uid
+                            val esAdministrador = esUsuarioAdministrador(email)
+                            val tipoUsuario = devolverTipoDeUsuario(esAdministrador)
+                            registrarEnBaseDeDatos(idUsuario, nombre, apellidos, email, password, tipoUsuario)
+                        } else {
+                            // Ha fallado el registro
+                            Toast.makeText(baseContext, "Error en el registro.", Toast.LENGTH_SHORT,).show()
+                        }
+                    }
+            }
         }
+    }
+
+    private fun registrarEnBaseDeDatos(idUsuario: String?, nombre: String, apellidos: String, email: String, password: String, tipoDeUsuario: String) {
+        dbRef = FirebaseDatabase.getInstance().reference
+        dbRef.child("tienda").child("usuarios").child(idUsuario!!).setValue(
+            Usuario(
+                idUsuario,
+                nombre,
+                apellidos,
+                email,
+                password,
+                tipoDeUsuario
+            )
+        )
     }
 
     private fun configurarBotonIniciarSesion() {
@@ -110,4 +149,8 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
         val pattern = Patterns.EMAIL_ADDRESS
         return pattern.matcher(email).matches()
     }
+
+    private fun esUsuarioAdministrador(email: String): Boolean = email=="administrador@gmail.com"
+
+    private fun devolverTipoDeUsuario(bol: Boolean): String = if (bol) "administrador" else "cliente"
 }
