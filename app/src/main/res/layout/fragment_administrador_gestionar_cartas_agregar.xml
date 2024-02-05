@@ -117,7 +117,7 @@
         app:layout_constraintTop_toBottomOf="@id/lyRarezaStock"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnAgragarCarta">
+        app:layout_constraintBottom_toTopOf="@id/btnAgregarCarta">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/dmDisponible"
@@ -159,7 +159,7 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnAgragarCarta"
+        android:id="@+id/btnAgregarCarta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/lyDisponibleColor"
