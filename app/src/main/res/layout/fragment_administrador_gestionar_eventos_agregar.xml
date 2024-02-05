@@ -1,14 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".administrador.fragments.AdministradorGestionarEventosAgregarFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Fragment añadir evento" />
 
-</FrameLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvImagen"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tilNombreEvento"
+        app:cardCornerRadius="16dp">
+        <ImageView
+            android:id="@+id/ivImagen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_search">
+        </ImageView>
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilNombreEvento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cvImagen"
+        app:layout_constraintBottom_toTopOf="@id/tilFechaEvento"
+        app:boxStrokeColor="@android:color/darker_gray"
+        app:errorEnabled="true"
+        app:boxStrokeWidth="2dp"
+        android:hint="Nombre">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietNombreEvento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilFechaEvento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tilPrecioEvento"
+        app:layout_constraintTop_toBottomOf="@id/tilNombreEvento"
+        app:boxStrokeColor="@android:color/darker_gray"
+        app:errorEnabled="true"
+        app:boxStrokeWidth="2dp"
+        android:hint="Fecha del evento">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietFechaEvento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPrecioEvento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tilAforoEvento"
+        app:layout_constraintTop_toBottomOf="@id/tilFechaEvento"
+        app:boxStrokeColor="@android:color/darker_gray"
+        app:errorEnabled="true"
+        app:boxStrokeWidth="2dp"
+        android:hint="Precio del evento">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietPrecioEvento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilAforoEvento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnAgregarEvento"
+        app:layout_constraintTop_toBottomOf="@id/tilPrecioEvento"
+        app:boxStrokeColor="@android:color/darker_gray"
+        app:errorEnabled="true"
+        app:boxStrokeWidth="2dp"
+        android:hint="Aforo del evento">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietAforoEvento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAgregarEvento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Agregar evento"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tilAforoEvento">
+    </androidx.appcompat.widget.AppCompatButton>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

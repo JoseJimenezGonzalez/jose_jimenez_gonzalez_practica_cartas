@@ -11,6 +11,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentAdministradorGestionarCartasAgregarBinding
 import com.example.myapplication.databinding.FragmentAdministradorHomeBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.storage.StorageReference
 
 class AdministradorGestionarCartasAgregarFragment : Fragment() {
 
@@ -20,6 +22,10 @@ class AdministradorGestionarCartasAgregarFragment : Fragment() {
     private var urlImagen: Uri? = null
 
     private lateinit var cover: ImageView
+
+    lateinit var dbRef: DatabaseReference
+
+    lateinit var stRef: StorageReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +43,22 @@ class AdministradorGestionarCartasAgregarFragment : Fragment() {
         cover = binding.ivImagen
 
         configurarBotonImageViewAccesoGaleria()
+
+        configurarBotonAgregarCarta()
+    }
+
+    private fun configurarBotonAgregarCarta() {
+        binding.btnAgregarCarta.setOnClickListener {
+            val nombreCarta = binding.tietNombre.text.toString()
+            val nombreExpansion = binding.tetNombreEdicion.text.toString()
+            val rareza = binding.tetRareza.text.toString()
+            val stock = binding.tietStock.text.toString()
+            val disponibilidad = binding.tetDisponible.text.toString()
+            val color = binding.tetColor.text.toString()
+            //Falta hacer las comprobaciones
+            //Imaginemos que el usuario no es subnormal y rellena los campos
+
+        }
     }
 
     private fun configurarBotonImageViewAccesoGaleria() {
@@ -50,7 +72,6 @@ class AdministradorGestionarCartasAgregarFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             if (uri != null) {
                 urlImagen = uri
-                // Actualizar la imagen en tu ImageView (asumiendo que "cover" es tu ImageView)
                 cover.setImageURI(uri)
             }
         }
