@@ -20,6 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import kotlin.coroutines.CoroutineContext
 
 class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope {
@@ -101,6 +102,14 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
         binding.ivImagen.setOnClickListener {
             accesoGaleria.launch("image/*")
         }
+    }
+
+    suspend fun guardarImagenCover(stoRef: StorageReference, id:String, imagen: Uri):String{
+
+        val urlCoverFirebase: Uri = stoRef.child("tienda").child("cartas").child(id)
+            .putFile(imagen).await().storage.downloadUrl.await()
+
+        return urlCoverFirebase.toString()
     }
 
     private val accesoGaleria =
