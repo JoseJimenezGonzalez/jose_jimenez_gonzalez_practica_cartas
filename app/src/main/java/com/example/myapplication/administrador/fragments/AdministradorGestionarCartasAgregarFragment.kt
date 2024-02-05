@@ -9,12 +9,20 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.myapplication.R
+import com.example.myapplication.data.model.Carta
 import com.example.myapplication.databinding.FragmentAdministradorGestionarCartasAgregarBinding
 import com.example.myapplication.databinding.FragmentAdministradorHomeBinding
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.StorageReference
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class AdministradorGestionarCartasAgregarFragment : Fragment() {
+class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope {
 
     private var _binding: FragmentAdministradorGestionarCartasAgregarBinding? = null
     private val binding get() = _binding!!
@@ -26,6 +34,8 @@ class AdministradorGestionarCartasAgregarFragment : Fragment() {
     lateinit var dbRef: DatabaseReference
 
     lateinit var stRef: StorageReference
+
+    lateinit var job: Job
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +52,8 @@ class AdministradorGestionarCartasAgregarFragment : Fragment() {
 
         cover = binding.ivImagen
 
+        job = Job()
+
         configurarBotonImageViewAccesoGaleria()
 
         configurarBotonAgregarCarta()
@@ -57,7 +69,30 @@ class AdministradorGestionarCartasAgregarFragment : Fragment() {
             val color = binding.tetColor.text.toString()
             //Falta hacer las comprobaciones
             //Imaginemos que el usuario no es subnormal y rellena los campos
+            //val idGenerado: String? = dbRef.child("PS2").child("juegos").push().key
+            dbRef = FirebaseDatabase.getInstance().reference
+            val idCarta = dbRef.child("tienda").child("cartas").push().key
+            registrarCartaEnBaseDatos(idCarta, nombreCarta, nombreExpansion, rareza, stock, disponibilidad, color)
 
+        }
+    }
+
+    private fun registrarCartaEnBaseDatos(
+        idCarta: String?,
+        nombreCarta: String,
+        nombreExpansion: String,
+        rareza: String,
+        stock: String,
+        disponibilidad: String,
+        color: String
+    ) {
+        launch {
+            dbRef = FirebaseDatabase.getInstance().reference
+            dbRef.child("tienda").child("cartas").child(idCarta!!).setValue(
+                Carta(
+                    idCarta, nombreCarta, nombreExpansion, rareza, stock, disponibilidad, color
+                )
+            )
         }
     }
 
@@ -75,4 +110,6 @@ class AdministradorGestionarCartasAgregarFragment : Fragment() {
                 cover.setImageURI(uri)
             }
         }
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.IO + job
 }
