@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="rareza_cartas">
+        <item>Común</item>
+        <item>Infrecuente</item>
+        <item>Rara</item>
+        <item>Mítica</item>
+    </array>
+</resources>

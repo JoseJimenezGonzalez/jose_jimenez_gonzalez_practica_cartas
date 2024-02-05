@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="colecciones_cartas">
+        <item>Alfa</item>
+        <item>Beta</item>
+        <item>Unlimited</item>
+        <item>Revised</item>
+        <item>Legends</item>
+        <item>The Dark</item>
+        <item>Fallen Empires</item>
+        <item>Cuarta Edición</item>
+        <item>Era Glacial</item>
+        <item>Crónicas</item>
+        <item>Renaissance</item>
+        <item>Tierras Natales</item>
+        <item>Alianzas</item>
+        <item>Mirage</item>
+        <item>Visions</item>
+        <item>Weatherlight</item>
+        <item>Tempestad</item>
+        <item>Fortaleza</item>
+        <item>Éxodo</item>
+        <item>Portal</item>
+        <item>Portal Segunda Edad</item>
+        <item>Saga de Urza</item>
+        <item>Legado de Urza</item>
+        <item>Destino de Urza</item>
+        <item>Masques Mercadianos</item>
+        <item>Némesis</item>
+        <item>Profecía</item>
+        <item>Invasión</item>
+        <item>Cambio de Planes</item>
+        <item>Apocalipsis</item>
+        <item>Odisea</item>
+        <item>Tormento</item>
+        <item>Juicio</item>
+        <item>Embates</item>
+        <item>Legiones</item>
+        <item>Flagelo</item>
+        <item>Mirrodin</item>
+        <item>Darksteel</item>
+        <item>Amanecer</item>
+        <item>Campeones de Kamigawa</item>
+        <item>Traidores de Kamigawa</item>
+        <item>Salvadores de Kamigawa</item>
+        <item>Ravnica: Ciudad de Gremios</item>
+        <item>Pacto de Gremios</item>
+        <item>Disensión</item>
+        <item>La Cicatriz del Tiempo</item>
+        <item>Caos Planar</item>
+        <item>Visiones del Futuro</item>
+        <item>Lorwyn</item>
+        <item>Morningtide</item>
+        <item>Shadowmoor</item>
+        <item>Eventide</item>
+        <item>Fragmentos de Alara</item>
+        <item>Conflux</item>
+        <item>Renacer de Alara</item>
+        <item>Zendikar</item>
+        <item>Despertar del Mundo</item>
+        <item>Ascenso de los Eldrazi</item>
+        <item>Cicatrices de Mirrodin</item>
+        <item>Asedio de Mirrodin</item>
+        <item>Nueva Frontera de Phyrexia</item>
+        <item>Innistrad</item>
+        <item>Ascenso Oscuro</item>
+        <item>Restauración de Avacyn</item>
+        <item>Regreso a Rávnica</item>
+        <item>Gatecrash</item>
+        <item>Dragones Laberínticos</item>
+        <item>Theros</item>
+        <item>Nacido de los Dioses</item>
+        <item>Travesía hacia Nyx</item>
+        <item>Khans de Tarkir</item>
+        <item>Destino Reescrito</item>
+        <item>Dragones de Tarkir</item>
+        <item>Orígenes Mágicos</item>
+        <item>La Batalla por Zendikar</item>
+        <item>Juramento de los Guardianes</item>
+        <item>Sombras Innistrad</item>
+        <item>Luna de Horrores</item>
+        <item>Kaladesh</item>
+        <item>Revuelta del Éter</item>
+        <item>Amonkhet</item>
+        <item>Hora de Devastación</item>
+        <item>Ixalan</item>
+        <item>Rivales de Ixalan</item>
+        <item>Dominaria</item>
+        <item>El Corazón de Kirón</item>
+        <item>Guerras de la Chispa</item>
+        <item>M20</item>
+        <item>Trono de Eldraine</item>
+        <item>Teros más allá de la Muerte</item>
+        <item>Ikoria: Mundo de los Behemots</item>
+        <item>M21</item>
+        <item>Zendikar Resurge</item>
+        <item>Kaldheim</item>
+        <item>Strixhaven: Colegio de Magos</item>
+        <item>Aventuras en los Reinos Olvidados</item>
+        <!-- Agrega más ediciones según sea necesario -->
+    </array>
+</resources>
