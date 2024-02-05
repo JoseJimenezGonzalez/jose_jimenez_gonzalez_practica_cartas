@@ -11,13 +11,12 @@ import com.example.myapplication.administrador.fragments.AdministradorGestionarC
 class ViewPagerAdapterCartas(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
 
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> AdministradorGestionarCartasAgregarFragment()
             1 -> AdministradorGestionarCartasVerFragment()
-            2 -> AdministradorGestionarCartasModificarFragment()
             else -> throw IllegalArgumentException("Invalid position")
         }
     }

@@ -17,7 +17,7 @@ class AdministradorGestionarCartasFragment : Fragment() {
     private var _binding: FragmentAdministradorGestionarCartasBinding? = null
     private val binding get() = _binding!!
 
-    private val listaNombreOpciones = listOf("Añadir", "Ver", "Modificar")
+    private val listaNombreOpciones = listOf("Añadir", "Ver")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
