@@ -7,17 +7,20 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.myapplication.administrador.fragments.AdministradorGestionarCartasAgregarFragment
 import com.example.myapplication.administrador.fragments.AdministradorGestionarCartasModificarFragment
 import com.example.myapplication.administrador.fragments.AdministradorGestionarCartasVerFragment
+import com.example.myapplication.administrador.fragments.AdministradorGestionarEventosAgregarFragment
+import com.example.myapplication.administrador.fragments.AdministradorGestionarEventosModificarFragment
+import com.example.myapplication.administrador.fragments.AdministradorGestionarEventosVerFragment
 
-class ViewPagerAdapterCards(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
+class ViewPagerAdapterEventos(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
 
     override fun getItemCount(): Int = 3
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> AdministradorGestionarCartasAgregarFragment()
-            1 -> AdministradorGestionarCartasVerFragment()
-            2 -> AdministradorGestionarCartasModificarFragment()
+            0 -> AdministradorGestionarEventosAgregarFragment()
+            1 -> AdministradorGestionarEventosVerFragment()
+            2 -> AdministradorGestionarEventosModificarFragment()
             else -> throw IllegalArgumentException("Invalid position")
         }
     }
