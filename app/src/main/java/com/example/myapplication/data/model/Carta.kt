@@ -1,5 +1,9 @@
 package com.example.myapplication.data.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Carta(
     val idCarta: String = "",
     val nombreCarta: String = "",
@@ -9,4 +13,4 @@ data class Carta(
     val disponibilidad: String = "",
     val color: String = "",
     val urlImagenCarta: String = ""
-)
+): Parcelable

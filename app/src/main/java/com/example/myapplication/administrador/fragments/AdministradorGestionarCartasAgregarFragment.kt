@@ -71,6 +71,7 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
             val color = binding.tetColor.text.toString()
             //Falta hacer las comprobaciones
             //Imaginemos que el usuario no es subnormal y rellena los campos
+            //itemicontint
             //No puede haber cartas con nombres iguales
             dbRef = FirebaseDatabase.getInstance().reference
             val idCarta = dbRef.child("tienda").child("cartas").push().key

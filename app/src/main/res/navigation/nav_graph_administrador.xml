@@ -24,5 +24,24 @@
         android:id="@+id/administradorGestionarCartasFragment"
         android:name="com.example.myapplication.administrador.fragments.AdministradorGestionarCartasFragment"
         android:label="fragment_administrador_gestionar_cartas"
-        tools:layout="@layout/fragment_administrador_gestionar_cartas" />
+        tools:layout="@layout/fragment_administrador_gestionar_cartas" >
+        <action
+            android:id="@+id/action_administradorGestionarCartasFragment_to_administradorGestionarCartasModificarFragment"
+            app:destination="@id/administradorGestionarCartasModificarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/administradorGestionarCartasAgregarFragment"
+        android:name="com.example.myapplication.administrador.fragments.AdministradorGestionarCartasAgregarFragment"
+        android:label="fragment_administrador_gestionar_cartas_agregar"
+        tools:layout="@layout/fragment_administrador_gestionar_cartas_agregar" />
+    <fragment
+        android:id="@+id/administradorGestionarCartasVerFragment"
+        android:name="com.example.myapplication.administrador.fragments.AdministradorGestionarCartasVerFragment"
+        android:label="fragment_administrador_gestionar_cartas_ver"
+        tools:layout="@layout/fragment_administrador_gestionar_cartas_ver" />
+    <fragment
+        android:id="@+id/administradorGestionarCartasModificarFragment"
+        android:name="com.example.myapplication.administrador.fragments.AdministradorGestionarCartasModificarFragment"
+        android:label="fragment_administrador_gestionar_cartas_modificar"
+        tools:layout="@layout/fragment_administrador_gestionar_cartas_modificar" />
 </navigation>

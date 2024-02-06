@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
@@ -64,7 +65,7 @@ class AdministradorGestionarCartasVerFragment : Fragment() {
         })
 
         //
-        adaptador = AdaptadorCartaAdministrador(lista)
+        adaptador = AdaptadorCartaAdministrador(lista, findNavController())
         apply {
             recycler = binding.rvMostrarCartas
             recycler.adapter = adaptador

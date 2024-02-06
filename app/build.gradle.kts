@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -60,8 +61,10 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation("org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.9.22")
 
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
+    //Los desgraciados le han metido un pila al navigation y falla cuando se navega
+    //Mantener en la version 2.3.5
+    implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
+    implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

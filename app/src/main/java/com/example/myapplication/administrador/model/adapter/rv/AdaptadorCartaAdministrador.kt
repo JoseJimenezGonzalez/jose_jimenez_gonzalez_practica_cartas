@@ -1,21 +1,24 @@
 package com.example.myapplication.administrador.model.adapter.rv
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.example.myapplication.R
+import com.example.myapplication.administrador.fragments.AdministradorGestionarCartasModificarFragment
 import com.example.myapplication.data.model.Carta
 
-class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>): RecyclerView.Adapter<AdaptadorCartaAdministrador.CartaViewHolder>(){
+class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, private val navController: NavController): RecyclerView.Adapter<AdaptadorCartaAdministrador.CartaViewHolder>(){
 
 
     private lateinit var contexto: Context
@@ -51,6 +54,13 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>): 
             .transition(transicion)
             .into(holder.foto)
 
+        holder.itemView.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putParcelable("carta", itemActual)
+            val fragment = AdministradorGestionarCartasModificarFragment()
+            fragment.arguments = bundle
+            navController.navigate(R.id.action_administradorGestionarCartasFragment_to_administradorGestionarCartasModificarFragment, bundle)
+        }
     }
 
     override fun getItemCount(): Int = listaFiltrada.size
