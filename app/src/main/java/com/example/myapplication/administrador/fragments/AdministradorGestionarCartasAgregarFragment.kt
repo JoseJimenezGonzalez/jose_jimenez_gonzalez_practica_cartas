@@ -58,6 +58,8 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
 
         //Codigo
 
+        dbRef = FirebaseDatabase.getInstance().reference
+
         cover = binding.ivImagen
 
         job = Job()
@@ -94,8 +96,8 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
         binding.btnAgregarCarta.setOnClickListener {
             val nombreCarta = binding.tietNombre.text.toString().trim()
             val nombreExpansion = binding.tetNombreEdicion.text.toString().trim()
-            val precio = binding.tietPrecio.text.toString().trim().toDouble()
-            val stock = binding.tietStock.text.toString().trim().toInt()
+            val precio = binding.tietPrecio.text.toString().trim()
+            val stock = binding.tietStock.text.toString().trim()
             val disponibilidad = binding.tetDisponible.text.toString().trim()
             val color = binding.tetColor.text.toString().trim()
             //Booleanos
@@ -106,7 +108,7 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
             var esStockCorrecto = false
             var esDisponibilidadCorrecta = false
             var esColorCorrecto = false
-            var existeJuego = false
+            var existeCarta = false
             //Falta hacer las comprobaciones
 
             if(nombreCarta.isNotBlank()){
@@ -123,14 +125,14 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
                 binding.dmNombreExpansion.error = "Insertar expansión"
             }
 
-            if(precio.toString().isNotBlank() && precio > 0){
+            if(precio.isNotBlank()){
                 binding.tietPrecio.error = null
                 esPrecioCorrecto = true
             }else{
                 binding.tietPrecio.error = "Insertar precio"
             }
 
-            if(stock.toString().isNotBlank() && stock > 0){
+            if(stock.isNotBlank()){
                 binding.tietStock.error = null
                 esStockCorrecto = true
             }else{
@@ -159,12 +161,13 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
 
             if(existeCarta(listaCartas, nombreCarta)){
                 Toast.makeText(context, "Ya existe esa carta", Toast.LENGTH_SHORT).show()
+                existeCarta = true
             }
 
-            if (esNombreCorrecto && esColorCorrecto && esPrecioCorrecto && esStockCorrecto && esDisponibilidadCorrecta && existeJuego && esFotoCorrecta && esEdicionCorrecta){
+            if (esNombreCorrecto && esColorCorrecto && esPrecioCorrecto && esStockCorrecto && esDisponibilidadCorrecta && !existeCarta && esFotoCorrecta && esEdicionCorrecta){
                 dbRef = FirebaseDatabase.getInstance().reference
                 val idCarta = dbRef.child("tienda").child("cartas").push().key
-                registrarCartaEnBaseDatos(idCarta, nombreCarta, nombreExpansion, precio, stock, disponibilidad, color)
+                registrarCartaEnBaseDatos(idCarta, nombreCarta, nombreExpansion, precio.toDouble(), stock.toInt(), disponibilidad, color)
             }
         }
     }
