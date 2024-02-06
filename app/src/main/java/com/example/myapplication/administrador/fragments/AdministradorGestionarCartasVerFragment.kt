@@ -63,6 +63,7 @@ class AdministradorGestionarCartasVerFragment : Fragment() {
             }
         })
 
+        //
         adaptador = AdaptadorCartaAdministrador(lista)
         apply {
             recycler = binding.rvMostrarCartas
