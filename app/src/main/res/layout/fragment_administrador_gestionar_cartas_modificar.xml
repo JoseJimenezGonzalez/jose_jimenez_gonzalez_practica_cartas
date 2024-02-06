@@ -50,6 +50,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tilNombre"
         app:layout_constraintBottom_toTopOf="@id/lyPrecioStock"
+        app:errorEnabled="true"
+        app:boxStrokeWidth="2dp"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:hint="Expansión">
 
@@ -125,6 +127,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:errorEnabled="true"
+            app:boxStrokeWidth="2dp"
             android:hint="Disponible">
 
             <AutoCompleteTextView
@@ -143,6 +147,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:errorEnabled="true"
+            app:boxStrokeWidth="2dp"
             android:hint="Color">
 
             <AutoCompleteTextView

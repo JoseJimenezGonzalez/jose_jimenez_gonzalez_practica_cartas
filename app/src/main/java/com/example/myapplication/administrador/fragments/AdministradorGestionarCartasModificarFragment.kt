@@ -12,6 +12,7 @@ import android.os.Build.VERSION.SDK_INT
 import android.os.Parcelable
 import android.util.Log
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
@@ -20,8 +21,21 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.myapplication.R
 import com.example.myapplication.data.model.Carta
 import com.example.myapplication.databinding.FragmentAdministradorGestionarCartasModificarBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlin.coroutines.CoroutineContext
 
-class AdministradorGestionarCartasModificarFragment : Fragment() {
+class AdministradorGestionarCartasModificarFragment : Fragment(), CoroutineScope {
 
     private var _binding: FragmentAdministradorGestionarCartasModificarBinding? = null
     private val binding get() = _binding!!
@@ -31,6 +45,14 @@ class AdministradorGestionarCartasModificarFragment : Fragment() {
     private var urlImagen: Uri? = null
 
     private lateinit var imagen: ImageView
+
+    lateinit var dbRef: DatabaseReference
+
+    lateinit var stoRef: StorageReference
+
+    private lateinit var listaCartas: MutableList<Carta>
+
+    lateinit var job: Job
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +66,14 @@ class AdministradorGestionarCartasModificarFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //Codigo
+        dbRef = FirebaseDatabase.getInstance().reference
+
+        stoRef = FirebaseStorage.getInstance().reference
+
+
+        job = Job()
+
+        listaCartas = obtenerListaCartas(dbRef)
 
         //Me traigo el objeto del otro fragment
         val bundle = arguments
@@ -54,6 +84,7 @@ class AdministradorGestionarCartasModificarFragment : Fragment() {
 
         configuracionInicialUI()
         configurarBotonImageViewAccesoGaleria()
+        configurarBotonModificarCarta()
 
         Glide.with(requireContext())
             .load(pojoCarta.urlImagenCarta)
@@ -62,6 +93,99 @@ class AdministradorGestionarCartasModificarFragment : Fragment() {
             .into(binding.ivImagen)
 
     }
+
+    private fun configurarBotonModificarCarta() {
+        binding.btnModificarCarta.setOnClickListener {
+            val nombreCarta = binding.tietNombre.text.toString().trim()
+            val nombreExpansion = binding.tetNombreEdicion.text.toString().trim()
+            val precio = binding.tietPrecio.text.toString().trim()
+            val stock = binding.tietStock.text.toString().trim()
+            val disponibilidad = binding.tetDisponible.text.toString().trim()
+            val color = binding.tetColor.text.toString().trim()
+            //Booleanos
+            var esFotoCorrecta = false
+            var esNombreCorrecto = false
+            var esEdicionCorrecta = false
+            var esPrecioCorrecto = false
+            var esStockCorrecto = false
+            var esDisponibilidadCorrecta = false
+            var esColorCorrecto = false
+            var existeCarta = false
+            //Falta hacer las comprobaciones
+
+            if(nombreCarta.isNotBlank()){
+                binding.tietNombre.error = null
+                esNombreCorrecto = true
+            }else{
+                binding.tietNombre.error = "Insertar nombre"
+            }
+
+            if(nombreExpansion.isNotBlank()){
+                binding.dmNombreExpansion.error = null
+                esEdicionCorrecta = true
+            }else{
+                binding.dmNombreExpansion.error = "Insertar expansión"
+            }
+
+            if(precio.isNotBlank()){
+                binding.tietPrecio.error = null
+                esPrecioCorrecto = true
+            }else{
+                binding.tietPrecio.error = "Insertar precio"
+            }
+
+            if(stock.isNotBlank()){
+                binding.tietStock.error = null
+                esStockCorrecto = true
+            }else{
+                binding.tietStock.error = "Insertar stock"
+            }
+
+            if(disponibilidad.isNotBlank()){
+                binding.dmDisponible.error = null
+                esDisponibilidadCorrecta = true
+            }else{
+                binding.dmDisponible.error = "Insertar disponibilidad"
+            }
+
+            if(color.isNotBlank()){
+                binding.dmColor.error = null
+                esColorCorrecto = true
+            }else{
+                binding.dmColor.error = "Insertar color"
+            }
+
+            if(urlImagen == null){
+                Toast.makeText(context, "Falta la seleccionar la imagen", Toast.LENGTH_SHORT).show()
+            }else{
+                esFotoCorrecta = true
+            }
+
+            if(existeCarta(listaCartas, nombreCarta) && nombreCarta != pojoCarta.nombreCarta){
+                Toast.makeText(context, "Ya existe esa carta", Toast.LENGTH_SHORT).show()
+                existeCarta = true
+            }
+
+            if (esNombreCorrecto && esColorCorrecto && esPrecioCorrecto && esStockCorrecto && esDisponibilidadCorrecta && !existeCarta && esFotoCorrecta && esEdicionCorrecta){
+                dbRef = FirebaseDatabase.getInstance().reference
+                val idCarta = dbRef.child("tienda").child("cartas").push().key
+                var urlCoverFirebase = String()
+                launch {
+                    urlCoverFirebase = if(urlImagen == null){
+                        pojoCarta.urlImagenCarta!!
+                    }else{
+                        guardarImagenCover(stoRef, pojoCarta.idCarta!!, urlImagen!!)
+                    }
+                    dbRef.child("tienda").child("cartas").child(idCarta!!).setValue(
+                        Carta(
+                            idCarta, nombreCarta, nombreExpansion, precio.toDouble() , stock.toInt(), disponibilidad, color, urlCoverFirebase
+                        )
+                    )
+                }
+            }
+        }
+    }
+
 
     private fun configuracionInicialUI() {
         configurarDropDownEdicion()
@@ -168,6 +292,39 @@ class AdministradorGestionarCartasModificarFragment : Fragment() {
         }
     }
 
+    private fun obtenerListaCartas(dbRef: DatabaseReference): MutableList<Carta> {
+        val lista = mutableListOf<Carta>()
+
+        dbRef.child("tienda")
+            .child("cartas")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    snapshot.children.forEach{hijo : DataSnapshot ->
+                        val pojoCarta = hijo.getValue(Carta::class.java)
+                        lista.add(pojoCarta!!)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    println(error.message)
+                }
+            })
+
+        return lista
+    }
+
+    fun existeCarta(listaCartas : List<Carta>, nombre:String):Boolean{
+        return listaCartas.any{ it.nombreCarta!!.lowercase()==nombre.lowercase()}
+    }
+
+    suspend fun guardarImagenCover(stoRef: StorageReference, id:String, imagen: Uri):String{
+
+        val urlCoverFirebase: Uri = stoRef.child("cartas").child("mtg").child("imagenes").child(id)
+            .putFile(imagen).await().storage.downloadUrl.await()
+
+        return urlCoverFirebase.toString()
+    }
+
     //La extension de funcion parcelable utilizara el metodo adecuado segun la version de la API
     inline fun <reified T : Parcelable> Intent.parcelable(key: String): T? = when {
         SDK_INT >= 33 -> getParcelableExtra(key, T::class.java)
@@ -178,5 +335,7 @@ class AdministradorGestionarCartasModificarFragment : Fragment() {
         SDK_INT >= 33 -> getParcelable(key, T::class.java)
         else -> @Suppress("DEPRECATION") getParcelable(key) as? T
     }
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.IO + job
 
 }
