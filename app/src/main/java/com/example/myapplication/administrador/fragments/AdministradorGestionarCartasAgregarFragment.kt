@@ -7,13 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.myapplication.R
 import com.example.myapplication.data.model.Carta
 import com.example.myapplication.databinding.FragmentAdministradorGestionarCartasAgregarBinding
 import com.example.myapplication.databinding.FragmentAdministradorHomeBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.CoroutineScope
@@ -39,6 +43,8 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
 
     lateinit var job: Job
 
+    private lateinit var listaCartas: MutableList<Carta>
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,27 +62,110 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
 
         job = Job()
 
+        listaCartas = obtenerListaCartas(dbRef)
+
         configurarBotonImageViewAccesoGaleria()
 
         configurarBotonAgregarCarta()
     }
 
+    private fun obtenerListaCartas(dbRef: DatabaseReference): MutableList<Carta> {
+        val lista = mutableListOf<Carta>()
+
+        dbRef.child("tienda")
+            .child("cartas")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    snapshot.children.forEach{hijo : DataSnapshot ->
+                        val pojoCarta = hijo.getValue(Carta::class.java)
+                        lista.add(pojoCarta!!)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    println(error.message)
+                }
+            })
+
+        return lista
+    }
+
     private fun configurarBotonAgregarCarta() {
         binding.btnAgregarCarta.setOnClickListener {
-            val nombreCarta = binding.tietNombre.text.toString()
-            val nombreExpansion = binding.tetNombreEdicion.text.toString()
-            val precio = binding.tietPrecio.text.toString().toDouble()
-            val stock = binding.tietStock.text.toString().toInt()
-            val disponibilidad = binding.tetDisponible.text.toString()
-            val color = binding.tetColor.text.toString()
+            val nombreCarta = binding.tietNombre.text.toString().trim()
+            val nombreExpansion = binding.tetNombreEdicion.text.toString().trim()
+            val precio = binding.tietPrecio.text.toString().trim().toDouble()
+            val stock = binding.tietStock.text.toString().trim().toInt()
+            val disponibilidad = binding.tetDisponible.text.toString().trim()
+            val color = binding.tetColor.text.toString().trim()
+            //Booleanos
+            var esFotoCorrecta = false
+            var esNombreCorrecto = false
+            var esEdicionCorrecta = false
+            var esPrecioCorrecto = false
+            var esStockCorrecto = false
+            var esDisponibilidadCorrecta = false
+            var esColorCorrecto = false
+            var existeJuego = false
             //Falta hacer las comprobaciones
-            //Imaginemos que el usuario no es subnormal y rellena los campos
-            //itemicontint
-            //No puede haber cartas con nombres iguales
-            dbRef = FirebaseDatabase.getInstance().reference
-            val idCarta = dbRef.child("tienda").child("cartas").push().key
-            registrarCartaEnBaseDatos(idCarta, nombreCarta, nombreExpansion, precio, stock, disponibilidad, color)
 
+            if(nombreCarta.isNotBlank()){
+                binding.tietNombre.error = null
+                esNombreCorrecto = true
+            }else{
+                binding.tietNombre.error = "Insertar nombre"
+            }
+
+            if(nombreExpansion.isNotBlank()){
+                binding.dmNombreExpansion.error = null
+                esEdicionCorrecta = true
+            }else{
+                binding.dmNombreExpansion.error = "Insertar expansión"
+            }
+
+            if(precio.toString().isNotBlank() && precio > 0){
+                binding.tietPrecio.error = null
+                esPrecioCorrecto = true
+            }else{
+                binding.tietPrecio.error = "Insertar precio"
+            }
+
+            if(stock.toString().isNotBlank() && stock > 0){
+                binding.tietStock.error = null
+                esStockCorrecto = true
+            }else{
+                binding.tietStock.error = "Insertar stock"
+            }
+
+            if(disponibilidad.isNotBlank()){
+                binding.dmDisponible.error = null
+                esDisponibilidadCorrecta = true
+            }else{
+                binding.dmDisponible.error = "Insertar disponibilidad"
+            }
+
+            if(color.isNotBlank()){
+                binding.dmColor.error = null
+                esColorCorrecto = true
+            }else{
+                binding.dmColor.error = "Insertar color"
+            }
+
+            if(urlImagen == null){
+                Toast.makeText(context, "Falta la seleccionar la imagen", Toast.LENGTH_SHORT).show()
+            }else{
+                esFotoCorrecta = true
+            }
+
+            if(existeCarta(listaCartas, nombreCarta)){
+                Toast.makeText(context, "Ya existe esa carta", Toast.LENGTH_SHORT).show()
+            }
+
+            if (esNombreCorrecto && esColorCorrecto && esPrecioCorrecto && esStockCorrecto && esDisponibilidadCorrecta && existeJuego && esFotoCorrecta && esEdicionCorrecta){
+                dbRef = FirebaseDatabase.getInstance().reference
+                val idCarta = dbRef.child("tienda").child("cartas").push().key
+                registrarCartaEnBaseDatos(idCarta, nombreCarta, nombreExpansion, precio, stock, disponibilidad, color)
+            }
         }
     }
 
@@ -115,6 +204,10 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
             .putFile(imagen).await().storage.downloadUrl.await()
 
         return urlCoverFirebase.toString()
+    }
+
+    fun existeCarta(listaCartas : List<Carta>, nombre:String):Boolean{
+        return listaCartas.any{ it.nombreCarta!!.lowercase()==nombre.lowercase()}
     }
 
     private val accesoGaleria =
