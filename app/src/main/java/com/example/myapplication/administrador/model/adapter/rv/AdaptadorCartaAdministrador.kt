@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.example.myapplication.R
@@ -67,7 +68,7 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>): 
     fun opcionesGlide(context: Context): RequestOptions {
         return RequestOptions()
             .placeholder(animacionCarga(context))
-            .fallback(R.drawable.ic_ps2_mando)
+            .fallback(R.drawable.buried_joke)
             .error(R.drawable.error_404)
     }
 
