@@ -27,7 +27,7 @@ class AdministradorGestionarCartasVerFragment : Fragment() {
     private lateinit var recycler: RecyclerView
     private  lateinit var lista:MutableList<Carta>
     private lateinit var adaptador: AdaptadorCartaAdministrador
-    lateinit var dbRef: DatabaseReference
+    private lateinit var dbRef: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
