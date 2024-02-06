@@ -70,6 +70,7 @@ class AdministradorGestionarCartasModificarFragment : Fragment(), CoroutineScope
 
         stoRef = FirebaseStorage.getInstance().reference
 
+        imagen = binding.ivImagen
 
         job = Job()
 
@@ -168,15 +169,15 @@ class AdministradorGestionarCartasModificarFragment : Fragment(), CoroutineScope
 
             if (esNombreCorrecto && esColorCorrecto && esPrecioCorrecto && esStockCorrecto && esDisponibilidadCorrecta && !existeCarta && esFotoCorrecta && esEdicionCorrecta){
                 dbRef = FirebaseDatabase.getInstance().reference
-                val idCarta = dbRef.child("tienda").child("cartas").push().key
+                val idCarta = pojoCarta.idCarta
                 var urlCoverFirebase = String()
                 launch {
                     urlCoverFirebase = if(urlImagen == null){
-                        pojoCarta.urlImagenCarta!!
+                        pojoCarta.urlImagenCarta
                     }else{
-                        guardarImagenCover(stoRef, pojoCarta.idCarta!!, urlImagen!!)
+                        guardarImagenCover(stoRef, pojoCarta.idCarta, urlImagen!!)
                     }
-                    dbRef.child("tienda").child("cartas").child(idCarta!!).setValue(
+                    dbRef.child("tienda").child("cartas").child(idCarta).setValue(
                         Carta(
                             idCarta, nombreCarta, nombreExpansion, precio.toDouble() , stock.toInt(), disponibilidad, color, urlCoverFirebase
                         )
