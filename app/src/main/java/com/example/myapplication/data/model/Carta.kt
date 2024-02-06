@@ -4,8 +4,9 @@ data class Carta(
     val idCarta: String = "",
     val nombreCarta: String = "",
     val nombreExpansion: String = "",
-    val rareza: String = "",
-    val stock: String = "",
+    val precio: Double = 0.0,
+    val stock: Int = 0,
     val disponibilidad: String = "",
-    val color: String = ""
+    val color: String = "",
+    val urlImagenCarta: String = ""
 )

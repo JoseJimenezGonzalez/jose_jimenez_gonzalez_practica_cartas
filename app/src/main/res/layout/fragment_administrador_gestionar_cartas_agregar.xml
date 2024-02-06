@@ -49,7 +49,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tilNombre"
-        app:layout_constraintBottom_toTopOf="@id/lyRarezaStock"
+        app:layout_constraintBottom_toTopOf="@id/lyPrecioStock"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:hint="Expansión">
 
@@ -63,7 +63,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/lyRarezaStock"
+        android:id="@+id/lyPrecioStock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/dmNombreExpansion"
@@ -72,21 +72,20 @@
         app:layout_constraintBottom_toTopOf="@id/lyDisponibleColor">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/dmRareza"
+            android:id="@+id/tilPrecio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:hint="Rareza">
+            app:boxStrokeColor="@android:color/darker_gray"
+            app:errorEnabled="true"
+            app:boxStrokeWidth="2dp"
+            android:hint="Precio">
 
-            <AutoCompleteTextView
-                android:id="@+id/tetRareza"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tietPrecio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="none"
-                app:simpleItems="@array/rareza_cartas"
-                />
-
+                android:inputType="numberDecimal"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -102,7 +101,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tietStock"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType=""/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -114,7 +114,7 @@
         android:id="@+id/lyDisponibleColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/lyRarezaStock"
+        app:layout_constraintTop_toBottomOf="@id/lyPrecioStock"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btnAgregarCarta">

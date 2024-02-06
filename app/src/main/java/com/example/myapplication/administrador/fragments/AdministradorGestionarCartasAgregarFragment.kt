@@ -14,6 +14,7 @@ import com.example.myapplication.databinding.FragmentAdministradorGestionarCarta
 import com.example.myapplication.databinding.FragmentAdministradorHomeBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,14 +35,14 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
 
     lateinit var dbRef: DatabaseReference
 
-    lateinit var stRef: StorageReference
+    lateinit var stoRef: StorageReference
 
     lateinit var job: Job
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAdministradorGestionarCartasAgregarBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -64,16 +65,16 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
         binding.btnAgregarCarta.setOnClickListener {
             val nombreCarta = binding.tietNombre.text.toString()
             val nombreExpansion = binding.tetNombreEdicion.text.toString()
-            val rareza = binding.tetRareza.text.toString()
-            val stock = binding.tietStock.text.toString()
+            val precio = binding.tietPrecio.text.toString().toDouble()
+            val stock = binding.tietStock.text.toString().toInt()
             val disponibilidad = binding.tetDisponible.text.toString()
             val color = binding.tetColor.text.toString()
             //Falta hacer las comprobaciones
             //Imaginemos que el usuario no es subnormal y rellena los campos
-            //val idGenerado: String? = dbRef.child("PS2").child("juegos").push().key
+            //No puede haber cartas con nombres iguales
             dbRef = FirebaseDatabase.getInstance().reference
             val idCarta = dbRef.child("tienda").child("cartas").push().key
-            registrarCartaEnBaseDatos(idCarta, nombreCarta, nombreExpansion, rareza, stock, disponibilidad, color)
+            registrarCartaEnBaseDatos(idCarta, nombreCarta, nombreExpansion, precio, stock, disponibilidad, color)
 
         }
     }
@@ -82,16 +83,19 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
         idCarta: String?,
         nombreCarta: String,
         nombreExpansion: String,
-        rareza: String,
-        stock: String,
+        precio: Double,
+        stock: Int,
         disponibilidad: String,
-        color: String
+        color: String,
     ) {
         launch {
             dbRef = FirebaseDatabase.getInstance().reference
-            dbRef.child("tienda").child("cartas").child(idCarta!!).setValue(
+            stoRef = FirebaseStorage.getInstance().reference
+            val urlImageFirebase = guardarImagenCover(stoRef, idCarta!!, urlImagen!!)
+
+            dbRef.child("tienda").child("cartas").child(idCarta).setValue(
                 Carta(
-                    idCarta, nombreCarta, nombreExpansion, rareza, stock, disponibilidad, color
+                    idCarta, nombreCarta, nombreExpansion, precio , stock, disponibilidad, color, urlImageFirebase
                 )
             )
         }
@@ -106,7 +110,7 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
 
     suspend fun guardarImagenCover(stoRef: StorageReference, id:String, imagen: Uri):String{
 
-        val urlCoverFirebase: Uri = stoRef.child("tienda").child("cartas").child(id)
+        val urlCoverFirebase: Uri = stoRef.child("cartas").child("mtg").child("imagenes").child(id)
             .putFile(imagen).await().storage.downloadUrl.await()
 
         return urlCoverFirebase.toString()
