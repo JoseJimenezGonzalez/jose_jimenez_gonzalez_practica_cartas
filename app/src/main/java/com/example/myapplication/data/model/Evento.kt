@@ -11,5 +11,6 @@ data class Evento(
     val fecha: String = "",
     val precio: Double = 0.0,
     val aforo: Int = 0,
-    val aforo_ocupado: Int = 0
+    val aforoOcupado: Int = 0,
+    val urlImagenEvento: String = ""
 ): Parcelable

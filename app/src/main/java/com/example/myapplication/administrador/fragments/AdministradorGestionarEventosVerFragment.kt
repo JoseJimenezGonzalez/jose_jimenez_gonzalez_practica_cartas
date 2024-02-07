@@ -5,60 +5,77 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
+import com.example.myapplication.administrador.model.adapter.rv.AdaptadorCartaAdministrador
+import com.example.myapplication.administrador.model.adapter.rv.AdaptadorEventoAdministrador
+import com.example.myapplication.data.model.Carta
+import com.example.myapplication.data.model.Evento
+import com.example.myapplication.databinding.FragmentAdministradorGestionarCartasVerBinding
+import com.example.myapplication.databinding.FragmentAdministradorGestionarEventosVerBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [AdministradorGestionarEventosVerFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class AdministradorGestionarEventosVerFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentAdministradorGestionarEventosVerBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var recycler: RecyclerView
+    private  lateinit var lista:MutableList<Evento>
+    private lateinit var adaptador: AdaptadorEventoAdministrador
+    @Inject
+    lateinit var dbRef: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(
-            R.layout.fragment_administrador_gestionar_eventos_ver,
-            container,
-            false
-        )
+    ): View {
+        _binding = FragmentAdministradorGestionarEventosVerBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AdministradorGestionarEventosVerFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AdministradorGestionarEventosVerFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //Codigo
+        configurarRecyclerView()
+
     }
+
+    private fun configurarRecyclerView() {
+        lista = mutableListOf()
+        dbRef.child("tienda").child("eventos").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                lista.clear()
+                snapshot.children.forEach{hijo: DataSnapshot? ->
+                    val pojoEvento = hijo?.getValue(Evento::class.java)
+                    lista.add(pojoEvento!!)
+                }
+                recycler.adapter?.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                println(error.message)
+            }
+        })
+
+        //
+        adaptador = AdaptadorEventoAdministrador(lista, findNavController())
+        apply {
+            recycler = binding.rvMostrarEventos
+            recycler.adapter = adaptador
+            recycler.layoutManager = LinearLayoutManager(context)
+            recycler.setHasFixedSize(true)
+        }
+
+    }
+
 }

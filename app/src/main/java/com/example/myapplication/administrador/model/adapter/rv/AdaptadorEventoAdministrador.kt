@@ -35,16 +35,16 @@ class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento
     override fun onBindViewHolder(holder: AdaptadorEventoAdministrador.EventoViewHolder, position: Int) {
         val itemActual = listaFiltrada[position]
 
-        holder.nombreCarta.text = itemActual.nombreCarta
-        holder.nombreExpansion.text = itemActual.nombreExpansion
+        holder.nombreEvento.text = itemActual.nombre
+        holder.formatoEvento.text = itemActual.formato
         holder.precio.text = itemActual.precio.toString()
-        holder.stock.text = itemActual.stock.toString()
-        holder.disponibilidad.text = itemActual.disponibilidad
-        holder.colorCarta.text = itemActual.color
+        holder.fechaEvento.text = itemActual.fecha
+        holder.aforoMaximo.text = itemActual.aforo.toString()
+        holder.aforoOcupado.text = itemActual.aforoOcupado.toString()
 
-        val URL: String? = when(itemActual.url){
+        val URL: String? = when(itemActual.urlImagenEvento){
             "" -> null
-            else -> itemActual.urlImagenCarta
+            else -> itemActual.urlImagenEvento
         }
 
         Glide.with(contexto)
@@ -66,13 +66,13 @@ class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento
     override fun getItemCount(): Int = listaFiltrada.size
 
     class EventoViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val foto: ImageView = itemView.findViewById(R.id.ivFotoCarta)
-        val nombreCarta: TextView = itemView.findViewById(R.id.tvNombreCarta)
-        val nombreExpansion: TextView = itemView.findViewById(R.id.tvExpansion)
-        val colorCarta: TextView = itemView.findViewById(R.id.tvColor)
-        val precio: TextView = itemView.findViewById(R.id.tvPrecio)
-        val stock: TextView = itemView.findViewById(R.id.tvStock)
-        val disponibilidad: TextView = itemView.findViewById(R.id.tvDisponibilidad)
+        val foto: ImageView = itemView.findViewById(R.id.ivFotoEvento)
+        val nombreEvento: TextView = itemView.findViewById(R.id.tvNombreEvento)
+        val formatoEvento: TextView = itemView.findViewById(R.id.tvFormatoEvento)
+        val fechaEvento: TextView = itemView.findViewById(R.id.tvFechaEvento)
+        val precio: TextView = itemView.findViewById(R.id.tvPrecioEvento)
+        val aforoMaximo: TextView = itemView.findViewById(R.id.tvAforoMaximo)
+        val aforoOcupado: TextView = itemView.findViewById(R.id.tvAforoOcupado)
     }
 
     fun opcionesGlide(context: Context): RequestOptions {
