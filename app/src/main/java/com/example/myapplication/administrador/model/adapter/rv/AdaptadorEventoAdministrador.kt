@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.NavController
@@ -18,10 +19,14 @@ import com.example.myapplication.administrador.fragments.AdministradorGestionarC
 import com.example.myapplication.administrador.fragments.AdministradorGestionarEventosModificarFragment
 import com.example.myapplication.data.model.Carta
 import com.example.myapplication.data.model.Evento
+import com.example.myapplication.data.model.Usuario
+import com.example.myapplication.data.model.UsuarioActual
 
 class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento>, private val navController: NavController): RecyclerView.Adapter<AdaptadorEventoAdministrador.EventoViewHolder>(){
     private lateinit var contexto: Context
     private var listaFiltrada = listaEventos
+
+    private var tipoUsuario = ""
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -33,6 +38,16 @@ class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento
     }
 
     override fun onBindViewHolder(holder: AdaptadorEventoAdministrador.EventoViewHolder, position: Int) {
+        //Obtenemos el usuario
+        if(UsuarioActual.usuarioActual != null){
+            val usuarioActual: Usuario = UsuarioActual.usuarioActual!!
+            tipoUsuario = usuarioActual.tipoDeUsuario
+        }
+
+        if(tipoUsuario == "administrador"){
+            holder.boton.visibility = View.GONE
+        }
+
         val itemActual = listaFiltrada[position]
 
         holder.nombreEvento.text = itemActual.nombre
@@ -73,6 +88,7 @@ class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento
         val precio: TextView = itemView.findViewById(R.id.tvPrecioEvento)
         val aforoMaximo: TextView = itemView.findViewById(R.id.tvAforoMaximo)
         val aforoOcupado: TextView = itemView.findViewById(R.id.tvAforoOcupado)
+        val boton: Button = itemView.findViewById(R.id.btnApuntarseEvento)
     }
 
     fun opcionesGlide(context: Context): RequestOptions {

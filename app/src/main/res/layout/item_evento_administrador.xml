@@ -25,7 +25,7 @@
             android:id="@+id/tvNombreEvento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="Nombre del evento">
         </TextView>
 
@@ -69,6 +69,15 @@
             android:layout_marginBottom="16dp"
             android:text="Aforo ocupado">
         </TextView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnApuntarseEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="Apuntarse a evento">
+        </androidx.appcompat.widget.AppCompatButton>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

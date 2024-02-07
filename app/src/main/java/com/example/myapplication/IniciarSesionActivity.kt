@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.administrador.PrincipalAdministradorActivity
 import com.example.myapplication.cliente.PrincipalClienteActivity
 import com.example.myapplication.data.model.Usuario
+import com.example.myapplication.data.model.UsuarioActual
 import com.example.myapplication.databinding.ActivityIniciarSesionBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -57,6 +58,8 @@ class IniciarSesionActivity : AppCompatActivity() {
                                     //Toda la informacion del usuario
                                     val usuario = snapshot.getValue(Usuario::class.java)
                                     val tipoUsuario = usuario!!.tipoDeUsuario
+                                    //Lo meto en el companion
+                                    UsuarioActual.usuarioActual = usuario
                                     if(tipoUsuario == "administrador"){
                                         val intent = Intent(this@IniciarSesionActivity, PrincipalAdministradorActivity::class.java)
                                         startActivity(intent)
