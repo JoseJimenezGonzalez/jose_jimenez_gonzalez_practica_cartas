@@ -164,7 +164,7 @@ class AdministradorGestionarEventosAgregarFragment : Fragment(), CoroutineScope 
             val urlImageFirebase = guardarImagenCover(stoRef, idEvento!!, urlImagen!!)
             dbRef.child("tienda").child("eventos").child(idEvento).setValue(
                 Evento(
-                    idEvento, nombre, formato, fechaTorneo, precioEvento.toDouble(), aforoEvento.toInt(), 0
+                    idEvento, nombre, formato, fechaTorneo, precioEvento.toDouble(), aforoEvento.toInt(), 0, urlImageFirebase
                 )
             )
         }
