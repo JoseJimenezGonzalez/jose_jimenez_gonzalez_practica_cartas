@@ -19,6 +19,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.StorageReference
+import javax.inject.Inject
 
 class AdministradorGestionarCartasVerFragment : Fragment() {
 
@@ -28,12 +30,13 @@ class AdministradorGestionarCartasVerFragment : Fragment() {
     private lateinit var recycler: RecyclerView
     private  lateinit var lista:MutableList<Carta>
     private lateinit var adaptador: AdaptadorCartaAdministrador
-    private lateinit var dbRef: DatabaseReference
+    @Inject
+    lateinit var dbRef: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAdministradorGestionarCartasVerBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -47,7 +50,6 @@ class AdministradorGestionarCartasVerFragment : Fragment() {
     }
 
     private fun configurarRecyclerView() {
-        dbRef = FirebaseDatabase.getInstance().reference
         lista = mutableListOf()
         dbRef.child("tienda").child("cartas").addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {

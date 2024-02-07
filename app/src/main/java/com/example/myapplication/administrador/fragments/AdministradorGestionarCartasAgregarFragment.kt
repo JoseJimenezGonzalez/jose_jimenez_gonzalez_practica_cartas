@@ -20,14 +20,16 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
-
+@AndroidEntryPoint
 class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope {
 
     private var _binding: FragmentAdministradorGestionarCartasAgregarBinding? = null
@@ -37,8 +39,10 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
 
     private lateinit var cover: ImageView
 
+    @Inject
     lateinit var dbRef: DatabaseReference
 
+    @Inject
     lateinit var stoRef: StorageReference
 
     lateinit var job: Job
@@ -57,8 +61,6 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
         super.onViewCreated(view, savedInstanceState)
 
         //Codigo
-
-        dbRef = FirebaseDatabase.getInstance().reference
 
         cover = binding.ivImagen
 
@@ -165,7 +167,6 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
             }
 
             if (esNombreCorrecto && esColorCorrecto && esPrecioCorrecto && esStockCorrecto && esDisponibilidadCorrecta && !existeCarta && esFotoCorrecta && esEdicionCorrecta){
-                dbRef = FirebaseDatabase.getInstance().reference
                 val idCarta = dbRef.child("tienda").child("cartas").push().key
                 registrarCartaEnBaseDatos(idCarta, nombreCarta, nombreExpansion, precio.toDouble(), stock.toInt(), disponibilidad, color)
             }
@@ -182,8 +183,6 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
         color: String,
     ) {
         launch {
-            dbRef = FirebaseDatabase.getInstance().reference
-            stoRef = FirebaseStorage.getInstance().reference
             val urlImageFirebase = guardarImagenCover(stoRef, idCarta!!, urlImagen!!)
 
             dbRef.child("tienda").child("cartas").child(idCarta).setValue(
@@ -210,7 +209,7 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
     }
 
     fun existeCarta(listaCartas : List<Carta>, nombre:String):Boolean{
-        return listaCartas.any{ it.nombreCarta!!.lowercase()==nombre.lowercase()}
+        return listaCartas.any{ it.nombreCarta.lowercase()==nombre.lowercase()}
     }
 
     private val accesoGaleria =

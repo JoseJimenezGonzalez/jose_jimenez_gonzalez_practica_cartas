@@ -28,13 +28,16 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
+@AndroidEntryPoint
 class AdministradorGestionarCartasModificarFragment : Fragment(), CoroutineScope {
 
     private var _binding: FragmentAdministradorGestionarCartasModificarBinding? = null
@@ -46,8 +49,10 @@ class AdministradorGestionarCartasModificarFragment : Fragment(), CoroutineScope
 
     private lateinit var imagen: ImageView
 
+    @Inject
     lateinit var dbRef: DatabaseReference
 
+    @Inject
     lateinit var stoRef: StorageReference
 
     private lateinit var listaCartas: MutableList<Carta>
@@ -57,7 +62,7 @@ class AdministradorGestionarCartasModificarFragment : Fragment(), CoroutineScope
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAdministradorGestionarCartasModificarBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -66,9 +71,6 @@ class AdministradorGestionarCartasModificarFragment : Fragment(), CoroutineScope
         super.onViewCreated(view, savedInstanceState)
 
         //Codigo
-        dbRef = FirebaseDatabase.getInstance().reference
-
-        stoRef = FirebaseStorage.getInstance().reference
 
         imagen = binding.ivImagen
 
@@ -92,7 +94,6 @@ class AdministradorGestionarCartasModificarFragment : Fragment(), CoroutineScope
             .apply(opcionesGlide(requireContext()))
             .transition(transicion)
             .into(binding.ivImagen)
-
     }
 
     private fun configurarBotonModificarCarta() {
@@ -168,7 +169,6 @@ class AdministradorGestionarCartasModificarFragment : Fragment(), CoroutineScope
             }
 
             if (esNombreCorrecto && esColorCorrecto && esPrecioCorrecto && esStockCorrecto && esDisponibilidadCorrecta && !existeCarta && esFotoCorrecta && esEdicionCorrecta){
-                dbRef = FirebaseDatabase.getInstance().reference
                 val idCarta = pojoCarta.idCarta
                 var urlCoverFirebase = String()
                 launch {
@@ -195,7 +195,6 @@ class AdministradorGestionarCartasModificarFragment : Fragment(), CoroutineScope
         configurarNombre()
         configurarPrecio()
         configurarStock()
-
     }
 
     private fun configurarStock() {

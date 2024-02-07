@@ -41,7 +41,7 @@ class AdministradorGestionarEventosAgregarFragment : Fragment() {
 
     lateinit var job: Job
 
-    private lateinit var listaEventos: MutableList<Evento>
+    //private lateinit var listaEventos: MutableList<Evento>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,9 +61,9 @@ class AdministradorGestionarEventosAgregarFragment : Fragment() {
 
         job = Job()
 
-        listaEventos = obtenerListaEventos(dbRef)
+        //listaEventos = obtenerListaEventos(dbRef)
 
-        configurarBotonImageViewAccesoGaleria()
+        //configurarBotonImageViewAccesoGaleria()
         configurarDatePicker()
         configurarBotonRegistrarEvento()
 
