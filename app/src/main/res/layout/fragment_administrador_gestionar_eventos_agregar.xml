@@ -32,7 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cvImagen"
-        app:layout_constraintBottom_toTopOf="@id/tilFechaEvento"
+        app:layout_constraintBottom_toTopOf="@id/tilFormatoTorneo"
         app:boxStrokeColor="@android:color/darker_gray"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
@@ -45,13 +45,32 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilFormatoTorneo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tilNombreEvento"
+        app:layout_constraintBottom_toTopOf="@id/tilFechaEvento"
+        app:boxStrokeColor="@android:color/darker_gray"
+        app:errorEnabled="true"
+        app:boxStrokeWidth="2dp"
+        android:hint="Formato del torneo">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tietFormatoTorneo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilFechaEvento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tilPrecioEvento"
-        app:layout_constraintTop_toBottomOf="@id/tilNombreEvento"
+        app:layout_constraintTop_toBottomOf="@id/tilFormatoTorneo"
         app:boxStrokeColor="@android:color/darker_gray"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
@@ -60,7 +79,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietFechaEvento"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:focusable="false"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
