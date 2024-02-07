@@ -11,8 +11,10 @@ import com.example.myapplication.cliente.model.adapter.viewpager.ClienteViewPage
 import com.example.myapplication.databinding.FragmentClienteGestionarEventosBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class ClienteGestionarEventosFragment : Fragment() {
 
     private var _binding: FragmentClienteGestionarEventosBinding? = null
