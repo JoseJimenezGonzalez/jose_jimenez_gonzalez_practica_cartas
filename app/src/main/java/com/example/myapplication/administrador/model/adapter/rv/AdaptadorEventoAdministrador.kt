@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.NavController
@@ -16,24 +15,24 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.example.myapplication.R
 import com.example.myapplication.administrador.fragments.AdministradorGestionarCartasModificarFragment
+import com.example.myapplication.administrador.fragments.AdministradorGestionarEventosModificarFragment
 import com.example.myapplication.data.model.Carta
+import com.example.myapplication.data.model.Evento
 
-class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, private val navController: NavController): RecyclerView.Adapter<AdaptadorCartaAdministrador.CartaViewHolder>(){
-
-
+class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento>, private val navController: NavController): RecyclerView.Adapter<AdaptadorEventoAdministrador.EventoViewHolder>(){
     private lateinit var contexto: Context
-    private var listaFiltrada = listaCartas
+    private var listaFiltrada = listaEventos
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): AdaptadorCartaAdministrador.CartaViewHolder {
-        val vistaItem = LayoutInflater.from(parent.context).inflate(R.layout.item_carta_administrador, parent, false)
+    ): AdaptadorEventoAdministrador.EventoViewHolder {
+        val vistaItem = LayoutInflater.from(parent.context).inflate(R.layout.item_evento_administrador, parent, false)
         contexto = parent.context
-        return CartaViewHolder(vistaItem)
+        return EventoViewHolder(vistaItem)
     }
 
-    override fun onBindViewHolder(holder: AdaptadorCartaAdministrador.CartaViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AdaptadorEventoAdministrador.EventoViewHolder, position: Int) {
         val itemActual = listaFiltrada[position]
 
         holder.nombreCarta.text = itemActual.nombreCarta
@@ -43,7 +42,7 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, p
         holder.disponibilidad.text = itemActual.disponibilidad
         holder.colorCarta.text = itemActual.color
 
-        val URL: String? = when(itemActual.urlImagenCarta){
+        val URL: String? = when(itemActual.url){
             "" -> null
             else -> itemActual.urlImagenCarta
         }
@@ -56,16 +55,17 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, p
 
         holder.itemView.setOnClickListener {
             val bundle = Bundle()
-            bundle.putParcelable("carta", itemActual)
-            val fragment = AdministradorGestionarCartasModificarFragment()
+            bundle.putParcelable("evento", itemActual)
+            val fragment = AdministradorGestionarEventosModificarFragment()
             fragment.arguments = bundle
+            //Cambiar la direccion
             navController.navigate(R.id.action_administradorGestionarCartasFragment_to_administradorGestionarCartasModificarFragment, bundle)
         }
     }
 
     override fun getItemCount(): Int = listaFiltrada.size
 
-    class CartaViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    class EventoViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val foto: ImageView = itemView.findViewById(R.id.ivFotoCarta)
         val nombreCarta: TextView = itemView.findViewById(R.id.tvNombreCarta)
         val nombreExpansion: TextView = itemView.findViewById(R.id.tvExpansion)
