@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filterable
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.NavController
@@ -17,12 +17,15 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.myapplication.R
 import com.example.myapplication.administrador.fragments.AdministradorGestionarCartasModificarFragment
 import com.example.myapplication.data.model.Carta
+import com.example.myapplication.data.model.Usuario
+import com.example.myapplication.data.model.UsuarioActual
 
 class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, private val navController: NavController): RecyclerView.Adapter<AdaptadorCartaAdministrador.CartaViewHolder>(){
 
 
     private lateinit var contexto: Context
     private var listaFiltrada = listaCartas
+    var tipoUsuario = ""
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -34,6 +37,17 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, p
     }
 
     override fun onBindViewHolder(holder: AdaptadorCartaAdministrador.CartaViewHolder, position: Int) {
+
+        //Obtenemos el usuario
+        if(UsuarioActual.usuarioActual != null){
+            val usuarioActual: Usuario = UsuarioActual.usuarioActual!!
+            tipoUsuario = usuarioActual.tipoDeUsuario
+        }
+
+        if(tipoUsuario == "administrador"){
+            holder.boton.visibility = View.GONE
+        }
+
         val itemActual = listaFiltrada[position]
 
         holder.nombreCarta.text = itemActual.nombreCarta
@@ -73,6 +87,7 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, p
         val precio: TextView = itemView.findViewById(R.id.tvPrecio)
         val stock: TextView = itemView.findViewById(R.id.tvStock)
         val disponibilidad: TextView = itemView.findViewById(R.id.tvDisponibilidad)
+        val boton: Button = itemView.findViewById(R.id.btnComprarCarta)
     }
 
     fun opcionesGlide(context: Context): RequestOptions {

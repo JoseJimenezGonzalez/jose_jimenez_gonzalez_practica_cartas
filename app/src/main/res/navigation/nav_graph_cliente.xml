@@ -25,4 +25,9 @@
         android:name="com.example.myapplication.cliente.fragments.ClienteVerCartasFragment"
         android:label="fragment_cliente_ver_cartas"
         tools:layout="@layout/fragment_cliente_ver_cartas" />
+    <fragment
+        android:id="@+id/clienteGestionarCartasFragment"
+        android:name="com.example.myapplication.cliente.fragments.ClienteGestionarCartasFragment"
+        android:label="fragment_cliente_gestionar_cartas"
+        tools:layout="@layout/fragment_cliente_gestionar_cartas" />
 </navigation>

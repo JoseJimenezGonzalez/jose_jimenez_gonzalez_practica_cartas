@@ -1,14 +1,11 @@
 package com.example.myapplication
 
-import android.content.ContentValues.TAG
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.data.model.Usuario
-import com.example.myapplication.databinding.ActivityIniciarSesionBinding
 import com.example.myapplication.databinding.ActivityRegistrarUsuarioBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth

@@ -70,6 +70,15 @@
             android:text="Color de la carta">
         </TextView>
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnComprarCarta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="Comprar carta">
+        </androidx.appcompat.widget.AppCompatButton>
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </com.google.android.material.card.MaterialCardView>

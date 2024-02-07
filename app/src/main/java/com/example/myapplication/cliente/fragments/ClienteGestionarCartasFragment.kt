@@ -1,29 +1,31 @@
-package com.example.myapplication.administrador.fragments
+package com.example.myapplication.cliente.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.myapplication.R
-import com.example.myapplication.administrador.model.adapter.viewpager.AdministradorViewPagerAdaptadorEventos
-import com.example.myapplication.databinding.FragmentAdministradorGestionarEventosBinding
+import com.example.myapplication.cliente.model.adapter.viewpager.ClienteViewPagerAdaptadorCartas
+import com.example.myapplication.databinding.FragmentClienteGestionarCartasBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
-class AdministradorGestionarEventosFragment : Fragment() {
+@AndroidEntryPoint
+class ClienteGestionarCartasFragment : Fragment() {
 
-    private var _binding: FragmentAdministradorGestionarEventosBinding? = null
+    private var _binding: FragmentClienteGestionarCartasBinding? = null
     private val binding get() = _binding!!
 
-    private val listaNombreOpciones = listOf("Añadir", "Ver")
+    private val listaNombreOpciones = listOf("Comprar", "Mi colección")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentAdministradorGestionarEventosBinding.inflate(inflater, container, false)
+    ): View {
+        _binding = FragmentClienteGestionarCartasBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -34,7 +36,7 @@ class AdministradorGestionarEventosFragment : Fragment() {
         val viewPager: ViewPager2 = view.findViewById(R.id.pager)
         val tabLayout: TabLayout = view.findViewById(R.id.tab_layout)
 
-        val adapter = AdministradorViewPagerAdaptadorEventos(childFragmentManager, lifecycle)
+        val adapter = ClienteViewPagerAdaptadorCartas(childFragmentManager, lifecycle)
         viewPager.adapter = adapter
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
@@ -42,5 +44,4 @@ class AdministradorGestionarEventosFragment : Fragment() {
         }.attach()
 
     }
-
 }

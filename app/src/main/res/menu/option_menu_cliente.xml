@@ -10,8 +10,8 @@
         android:title="Buscador" />
 
     <item
-        android:id="@+id/clienteComprarCartasFragment"
-        android:icon="@drawable/ic_buy_cart"
+        android:id="@+id/clienteGestionarCartasFragment"
+        android:icon="@drawable/ic_cards"
         android:title="Comprar" />
     <item
         android:id="@+id/clienteEventosFragment"

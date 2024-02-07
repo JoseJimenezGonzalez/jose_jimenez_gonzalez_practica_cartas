@@ -1,19 +1,15 @@
 package com.example.myapplication.administrador.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.R
-import com.example.myapplication.administrador.model.adapter.rv.AdaptadorCartaAdministrador
 import com.example.myapplication.administrador.model.adapter.rv.AdaptadorEventoAdministrador
-import com.example.myapplication.data.model.Carta
 import com.example.myapplication.data.model.Evento
-import com.example.myapplication.databinding.FragmentAdministradorGestionarCartasVerBinding
 import com.example.myapplication.databinding.FragmentAdministradorGestionarEventosVerBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
