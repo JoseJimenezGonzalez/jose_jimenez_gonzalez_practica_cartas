@@ -3,7 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".cliente.fragments.ClienteVerEventoFragment">
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/svBuscaEvento"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ivMenuOpciones">
+    </androidx.appcompat.widget.SearchView>
+
+    <ImageView
+        android:id="@+id/ivMenuOpciones"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_menu">
+    </ImageView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMostrarEventos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/svBuscaEvento"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_evento_administrador">
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 
