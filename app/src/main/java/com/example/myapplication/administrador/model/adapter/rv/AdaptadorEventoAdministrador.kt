@@ -15,18 +15,19 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.example.myapplication.R
-import com.example.myapplication.administrador.fragments.AdministradorGestionarCartasModificarFragment
 import com.example.myapplication.administrador.fragments.AdministradorGestionarEventosModificarFragment
-import com.example.myapplication.data.model.Carta
 import com.example.myapplication.data.model.Evento
+import com.example.myapplication.data.model.ReservarEvento
 import com.example.myapplication.data.model.Usuario
 import com.example.myapplication.data.model.UsuarioActual
+import com.google.firebase.database.FirebaseDatabase
 
 class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento>, private val navController: NavController): RecyclerView.Adapter<AdaptadorEventoAdministrador.EventoViewHolder>(){
     private lateinit var contexto: Context
     private var listaFiltrada = listaEventos
 
     private var tipoUsuario = ""
+    private var idUsuario = ""
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -42,11 +43,9 @@ class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento
         if(UsuarioActual.usuarioActual != null){
             val usuarioActual: Usuario = UsuarioActual.usuarioActual!!
             tipoUsuario = usuarioActual.tipoDeUsuario
+            idUsuario = usuarioActual.idUsuario
         }
 
-        if(tipoUsuario == "administrador"){
-            holder.boton.visibility = View.GONE
-        }
 
         val itemActual = listaFiltrada[position]
 
@@ -68,13 +67,46 @@ class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento
             .transition(transicion)
             .into(holder.foto)
 
-        holder.itemView.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putParcelable("evento", itemActual)
-            val fragment = AdministradorGestionarEventosModificarFragment()
-            fragment.arguments = bundle
-            //Cambiar la direccion
-            navController.navigate(R.id.action_administradorGestionarCartasFragment_to_administradorGestionarCartasModificarFragment, bundle)
+        //Diferencias entre usuarios
+        if(tipoUsuario == "administrador"){
+            holder.boton.visibility = View.GONE
+            holder.itemView.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putParcelable("evento", itemActual)
+                val fragment = AdministradorGestionarEventosModificarFragment()
+                fragment.arguments = bundle
+                //Cambiar la direccion
+                navController.navigate(R.id.action_administradorGestionarCartasFragment_to_administradorGestionarCartasModificarFragment, bundle)
+            }
+        }else{
+            holder.boton.setOnClickListener {
+                //Añadimos el evento a la base de datos
+                val dbRef = FirebaseDatabase.getInstance().reference
+                //Atributos del evento
+                val urlFoto = itemActual.urlImagenEvento
+                val nombreEvento = itemActual.nombre
+                val formatoEvento = itemActual.formato
+                val aforoMaximo = itemActual.aforo
+                val aforoOcupado = itemActual.aforoOcupado
+                val precioEvento = itemActual.precio
+                val fechaEvento = itemActual.fecha
+                val idEvento = itemActual.id
+                val idReservaEvento = dbRef.child("tienda").child("reservas_eventos").push().key
+                dbRef.child("tienda").child("reservas_eventos").child(idReservaEvento!!).setValue(
+                    ReservarEvento(
+                        idReservaEvento,
+                        idEvento,
+                        idUsuario,
+                        nombreEvento,
+                        formatoEvento,
+                        fechaEvento,
+                        precioEvento,
+                        aforoMaximo,
+                        aforoOcupado,
+                        urlFoto
+                    )
+                )
+            }
         }
     }
 
