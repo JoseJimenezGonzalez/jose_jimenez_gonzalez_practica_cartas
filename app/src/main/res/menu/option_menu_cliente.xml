@@ -14,7 +14,7 @@
         android:icon="@drawable/ic_cards"
         android:title="Comprar" />
     <item
-        android:id="@+id/clienteEventosFragment"
+        android:id="@+id/clienteGestionarEventosFragment"
         android:icon="@drawable/ic_events"
         android:title="Eventos" />
 </menu>

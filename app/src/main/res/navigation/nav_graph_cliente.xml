@@ -11,11 +11,6 @@
         android:label="fragment_cliente_comprar_cartas"
         tools:layout="@layout/fragment_cliente_comprar_cartas" />
     <fragment
-        android:id="@+id/clienteEventosFragment"
-        android:name="com.example.myapplication.cliente.fragments.ClienteEventosFragment"
-        android:label="fragment_cliente_eventos"
-        tools:layout="@layout/fragment_cliente_eventos" />
-    <fragment
         android:id="@+id/clienteHomeFragment"
         android:name="com.example.myapplication.cliente.fragments.ClienteHomeFragment"
         android:label="fragment_cliente_home"
@@ -30,4 +25,19 @@
         android:name="com.example.myapplication.cliente.fragments.ClienteGestionarCartasFragment"
         android:label="fragment_cliente_gestionar_cartas"
         tools:layout="@layout/fragment_cliente_gestionar_cartas" />
+    <fragment
+        android:id="@+id/clienteApuntarEventoFragment"
+        android:name="com.example.myapplication.cliente.fragments.ClienteApuntarEventoFragment"
+        android:label="fragment_cliente_apuntar_evento"
+        tools:layout="@layout/fragment_cliente_apuntar_evento" />
+    <fragment
+        android:id="@+id/clienteVerEventoFragment"
+        android:name="com.example.myapplication.cliente.fragments.ClienteVerEventoFragment"
+        android:label="fragment_cliente_ver_evento"
+        tools:layout="@layout/fragment_cliente_ver_evento" />
+    <fragment
+        android:id="@+id/clienteGestionarEventosFragment"
+        android:name="com.example.myapplication.cliente.fragments.ClienteGestionarEventosFragment"
+        android:label="fragment_cliente_gestionar_eventos"
+        tools:layout="@layout/fragment_cliente_gestionar_eventos" />
 </navigation>

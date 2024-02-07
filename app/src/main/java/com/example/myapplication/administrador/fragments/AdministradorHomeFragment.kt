@@ -1,13 +1,11 @@
 package com.example.myapplication.administrador.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.myapplication.R
+import androidx.fragment.app.Fragment
 import com.example.myapplication.databinding.FragmentAdministradorHomeBinding
-import com.example.myapplication.databinding.FragmentClienteEventosBinding
 
 class AdministradorHomeFragment : Fragment() {
 
