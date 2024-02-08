@@ -80,34 +80,42 @@ class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento
                 navController.navigate(R.id.action_administradorGestionarCartasFragment_to_administradorGestionarCartasModificarFragment, bundle)
             }
         }else{
-            holder.boton.setOnClickListener {
-                //Añadimos el evento a la base de datos
-                val dbRef = FirebaseDatabase.getInstance().reference
-                //Atributos del evento
-                val urlFoto = itemActual.urlImagenEvento
-                val nombreEvento = itemActual.nombre
-                val formatoEvento = itemActual.formato
-                val aforoMaximo = itemActual.aforo
-                val aforoOcupado = itemActual.aforoOcupado
-                val precioEvento = itemActual.precio
-                val fechaEvento = itemActual.fecha
-                val idEvento = itemActual.id
-                val idReservaEvento = dbRef.child("tienda").child("reservas_eventos").push().key
-                dbRef.child("tienda").child("reservas_eventos").child(idReservaEvento!!).setValue(
-                    ReservarEvento(
-                        idReservaEvento,
-                        idEvento,
-                        idUsuario,
-                        nombreEvento,
-                        formatoEvento,
-                        fechaEvento,
-                        precioEvento,
-                        aforoMaximo,
-                        aforoOcupado,
-                        urlFoto
+            //Usuario
+            if(itemActual.aforo == itemActual.aforoOcupado){
+                //Desactivo el boton para que no se puedan apuntar mas personas
+                holder.boton.visibility = View.GONE
+            }else{
+                holder.boton.setOnClickListener {
+                    //Añadimos el evento a la base de datos
+                    val dbRef = FirebaseDatabase.getInstance().reference
+                    //Atributos del evento
+                    val urlFoto = itemActual.urlImagenEvento
+                    val nombreEvento = itemActual.nombre
+                    val formatoEvento = itemActual.formato
+                    val aforoMaximo = itemActual.aforo
+                    val aforoOcupado = itemActual.aforoOcupado
+                    val precioEvento = itemActual.precio
+                    val fechaEvento = itemActual.fecha
+                    val idEvento = itemActual.id
+                    val idReservaEvento = dbRef.child("tienda").child("reservas_eventos").push().key
+                    //Tenemos que actualizar las plazas de ocupados
+                    val nuevoAforoOcupado = aforoOcupado + 1
+                    dbRef.child("tienda").child("reservas_eventos").child(idReservaEvento!!).setValue(
+                        ReservarEvento(
+                            idReservaEvento,
+                            idEvento,
+                            idUsuario,
+                            nombreEvento,
+                            formatoEvento,
+                            fechaEvento,
+                            precioEvento,
+                            aforoMaximo,
+                            nuevoAforoOcupado,
+                            urlFoto
+                        )
                     )
-                )
-                listener.onClick(position)
+                    listener.onClick(position)
+                }
             }
         }
     }
