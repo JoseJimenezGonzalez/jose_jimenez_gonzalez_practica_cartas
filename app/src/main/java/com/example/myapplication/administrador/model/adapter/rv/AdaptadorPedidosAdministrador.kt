@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -52,8 +53,14 @@ class AdaptadorPedidosAdministrador(private val listaCartas: MutableList<Reserva
             .transition(transicion)
             .into(holder.foto)
 
-        holder.itemView.setOnClickListener {
+        holder.botonReserva.setOnClickListener {
+            //Pasarlo a procesado
 
+
+        }
+
+        if(itemActual.estado == "preparado"){
+            holder.botonReserva.visibility = View.GONE
         }
     }
 
@@ -70,6 +77,7 @@ class AdaptadorPedidosAdministrador(private val listaCartas: MutableList<Reserva
         val idCarta: TextView = itemView.findViewById(R.id.tvIdCarta)
         val idUsuario: TextView = itemView.findViewById(R.id.tvIdUsuario)
         val idReserva: TextView = itemView.findViewById(R.id.tvIdReserva)
+        val botonReserva: Button = itemView.findViewById(R.id.btnProcesarPedido)
     }
 
     fun opcionesGlide(context: Context): RequestOptions {
