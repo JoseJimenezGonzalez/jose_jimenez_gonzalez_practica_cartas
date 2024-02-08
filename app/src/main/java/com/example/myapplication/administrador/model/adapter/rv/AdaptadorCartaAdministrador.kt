@@ -16,16 +16,20 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.example.myapplication.R
 import com.example.myapplication.administrador.fragments.AdministradorGestionarCartasModificarFragment
+import com.example.myapplication.cliente.model.adapter.rv.OnClickListener
 import com.example.myapplication.data.model.Carta
+import com.example.myapplication.data.model.ReservarCarta
 import com.example.myapplication.data.model.Usuario
 import com.example.myapplication.data.model.UsuarioActual
+import com.google.firebase.database.FirebaseDatabase
 
-class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, private val navController: NavController): RecyclerView.Adapter<AdaptadorCartaAdministrador.CartaViewHolder>(){
+class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, private val navController: NavController, private val listener: OnClickListener): RecyclerView.Adapter<AdaptadorCartaAdministrador.CartaViewHolder>(){
 
 
     private lateinit var contexto: Context
     private var listaFiltrada = listaCartas
     var tipoUsuario = ""
+    var idUsuario = ""
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -37,16 +41,6 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, p
     }
 
     override fun onBindViewHolder(holder: AdaptadorCartaAdministrador.CartaViewHolder, position: Int) {
-
-        //Obtenemos el usuario
-        if(UsuarioActual.usuarioActual != null){
-            val usuarioActual: Usuario = UsuarioActual.usuarioActual!!
-            tipoUsuario = usuarioActual.tipoDeUsuario
-        }
-
-        if(tipoUsuario == "administrador"){
-            holder.boton.visibility = View.GONE
-        }
 
         val itemActual = listaFiltrada[position]
 
@@ -74,6 +68,70 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, p
             val fragment = AdministradorGestionarCartasModificarFragment()
             fragment.arguments = bundle
             navController.navigate(R.id.action_administradorGestionarCartasFragment_to_administradorGestionarCartasModificarFragment, bundle)
+        }
+
+        //Obtenemos el usuario
+        if(UsuarioActual.usuarioActual != null){
+            val usuarioActual: Usuario = UsuarioActual.usuarioActual!!
+            tipoUsuario = usuarioActual.tipoDeUsuario
+            idUsuario = usuarioActual.tipoDeUsuario
+        }
+
+        if(tipoUsuario == "administrador"){
+
+            holder.boton.visibility = View.GONE
+
+        }else{
+
+            //Añadimos la carta a la base de datos
+            holder.boton.setOnClickListener {
+
+                val dbRef = FirebaseDatabase.getInstance().reference
+
+                val idCarta = itemActual.idCarta
+                val nombreCarta = itemActual.nombreCarta
+                val nombreExpansion = itemActual.nombreExpansion
+                val precio = itemActual.precio
+                val stock = itemActual.stock
+                val nuevoStock = stock - 1
+                val disponibilidad = itemActual.disponibilidad
+                val color = itemActual.color
+                val urlImagenCarta = itemActual.urlImagenCarta
+                //Lo metemos como en preparacion, hasta que el admin no confirme no pasa a preparado
+                val estadoPedido = "preparacion"
+                val idReservaCarta = dbRef.child("tienda").child("reservas_carta").push().key
+                //La añadimos a preparacion
+                dbRef.child("tienda").child("reservas_carta").child(idReservaCarta!!).setValue(
+                    ReservarCarta(
+                        idCarta,
+                        nombreCarta,
+                        nombreExpansion,
+                        precio,
+                        nuevoStock,
+                        disponibilidad,
+                        color,
+                        urlImagenCarta,
+                        idReservaCarta,
+                        idUsuario,
+                        estadoPedido
+                    )
+                )
+                //Le quitamos 1 de stock
+                dbRef.child("tienda").child("cartas").child(idCarta).setValue(
+                    Carta(
+                        idCarta,
+                        nombreCarta,
+                        nombreExpansion,
+                        precio,
+                        nuevoStock,
+                        disponibilidad,
+                        color,
+                        urlImagenCarta
+                    )
+                )
+                listener.onClick(position)
+
+            }
         }
     }
 
