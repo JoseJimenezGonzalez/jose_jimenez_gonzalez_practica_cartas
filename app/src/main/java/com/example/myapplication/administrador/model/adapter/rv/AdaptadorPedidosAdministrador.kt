@@ -55,7 +55,7 @@ class AdaptadorPedidosAdministrador(private val listaCartas: MutableList<Reserva
             .into(holder.foto)
 
         holder.botonReserva.setOnClickListener {
-            //Pasarlo a procesado
+            //Pasarlo a preparado
             val dbRef = FirebaseDatabase.getInstance().reference
 
             val idCarta = itemActual.idCarta
@@ -98,7 +98,7 @@ class AdaptadorPedidosAdministrador(private val listaCartas: MutableList<Reserva
         val nombreCarta: TextView = itemView.findViewById(R.id.tvNombreCarta)
         val nombreExpansion: TextView = itemView.findViewById(R.id.tvExpansion)
         val precio: TextView = itemView.findViewById(R.id.tvPrecio)
-        val colorCarta: TextView = itemView.findViewById(R.id.tvColor)
+        val colorCarta: TextView = itemView.findViewById(R.id.tvColorCarta)
         val estadoCarta: TextView = itemView.findViewById(R.id.tvEstadoCarta)
         val foto: ImageView = itemView.findViewById(R.id.ivFotoCarta)
         val idCarta: TextView = itemView.findViewById(R.id.tvIdCarta)

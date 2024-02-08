@@ -15,8 +15,10 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class AdministradorGestionarVentasProcesadosFragment : Fragment(), OnClickListener {
 
     private var _binding: FragmentAdministradorGestionarVentasProcesadosBinding? = null
@@ -51,7 +53,7 @@ class AdministradorGestionarVentasProcesadosFragment : Fragment(), OnClickListen
                 lista.clear()
                 snapshot.children.forEach{ reserva ->
                     val pojoReserva = reserva?.getValue(ReservarCarta::class.java)
-                    if(pojoReserva!!.estado == "preparacion"){
+                    if(pojoReserva!!.estado == "preparado"){
                         lista.add(pojoReserva!!)
                     }
                 }

@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.myapplication.R
-import com.example.myapplication.administrador.model.adapter.viewpager.AdministradorViewPagerAdaptadorCartas
 import com.example.myapplication.administrador.model.adapter.viewpager.AdministradorViewPagerAdaptadorVentas
 import com.example.myapplication.databinding.FragmentAdministradorGestionarVentasBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class AdministradorGestionarVentasFragment : Fragment() {
 
     private var _binding: FragmentAdministradorGestionarVentasBinding? = null
