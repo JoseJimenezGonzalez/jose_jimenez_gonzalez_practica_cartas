@@ -16,13 +16,14 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.example.myapplication.R
 import com.example.myapplication.administrador.fragments.AdministradorGestionarEventosModificarFragment
+import com.example.myapplication.cliente.model.adapter.rv.OnClickListener
 import com.example.myapplication.data.model.Evento
 import com.example.myapplication.data.model.ReservarEvento
 import com.example.myapplication.data.model.Usuario
 import com.example.myapplication.data.model.UsuarioActual
 import com.google.firebase.database.FirebaseDatabase
 
-class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento>, private val navController: NavController): RecyclerView.Adapter<AdaptadorEventoAdministrador.EventoViewHolder>(){
+class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento>, private val navController: NavController, private val listener: OnClickListener): RecyclerView.Adapter<AdaptadorEventoAdministrador.EventoViewHolder>(){
     private lateinit var contexto: Context
     private var listaFiltrada = listaEventos
 
@@ -106,6 +107,7 @@ class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento
                         urlFoto
                     )
                 )
+                listener.onClick(position)
             }
         }
     }

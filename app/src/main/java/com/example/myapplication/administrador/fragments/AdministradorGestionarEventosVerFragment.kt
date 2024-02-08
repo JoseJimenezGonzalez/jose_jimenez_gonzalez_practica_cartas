@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.administrador.model.adapter.rv.AdaptadorEventoAdministrador
+import com.example.myapplication.cliente.model.adapter.rv.OnClickListener
 import com.example.myapplication.data.model.Evento
 import com.example.myapplication.databinding.FragmentAdministradorGestionarEventosVerBinding
 import com.google.firebase.database.DataSnapshot
@@ -19,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AdministradorGestionarEventosVerFragment : Fragment() {
+class AdministradorGestionarEventosVerFragment : Fragment(), OnClickListener {
 
     private var _binding: FragmentAdministradorGestionarEventosVerBinding? = null
     private val binding get() = _binding!!
@@ -64,7 +65,7 @@ class AdministradorGestionarEventosVerFragment : Fragment() {
         })
 
         //
-        adaptador = AdaptadorEventoAdministrador(lista, findNavController())
+        adaptador = AdaptadorEventoAdministrador(lista, findNavController(), this)
         apply {
             recycler = binding.rvMostrarEventos
             recycler.adapter = adaptador
@@ -72,6 +73,10 @@ class AdministradorGestionarEventosVerFragment : Fragment() {
             recycler.setHasFixedSize(true)
         }
 
+    }
+
+    override fun onClick(posicion: Int) {
+        //No hago nada
     }
 
 }
