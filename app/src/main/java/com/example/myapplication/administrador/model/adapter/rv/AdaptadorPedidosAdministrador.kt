@@ -15,6 +15,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.myapplication.R
 import com.example.myapplication.cliente.model.adapter.rv.OnClickListener
 import com.example.myapplication.data.model.ReservarCarta
+import com.google.firebase.database.FirebaseDatabase
 
 class AdaptadorPedidosAdministrador(private val listaCartas: MutableList<ReservarCarta>, private val listener: OnClickListener): RecyclerView.Adapter<AdaptadorPedidosAdministrador.PedidoCartaViewHolder>() {
     private lateinit var contexto: Context
@@ -55,6 +56,32 @@ class AdaptadorPedidosAdministrador(private val listaCartas: MutableList<Reserva
 
         holder.botonReserva.setOnClickListener {
             //Pasarlo a procesado
+            val dbRef = FirebaseDatabase.getInstance().reference
+
+            val idCarta = itemActual.idCarta
+            val nombreCarta = itemActual.nombreCarta
+            val nombreExpansion = itemActual.nombreExpansion
+            val precio = itemActual.precio
+            val idUsuario = itemActual.idUsuario
+            val idReserva = itemActual.idReserva
+            val color = itemActual.color
+            val urlImagenCarta = itemActual.urlImagenCarta
+            val nuevoEstado = "preparado"
+
+            dbRef.child("tienda").child("reservas_carta").child(idReserva).setValue(
+                ReservarCarta(
+                    idCarta,
+                    nombreCarta,
+                    nombreExpansion,
+                    precio,
+                    color,
+                    urlImagenCarta,
+                    idReserva,
+                    idUsuario,
+                    nuevoEstado
+                )
+            )
+            listener.onClick(position)
 
 
         }
