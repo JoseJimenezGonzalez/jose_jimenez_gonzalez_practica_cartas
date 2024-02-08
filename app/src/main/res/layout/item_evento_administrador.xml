@@ -2,6 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="6dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -78,6 +79,16 @@
             android:layout_marginBottom="16dp"
             android:text="Apuntarse a evento">
         </androidx.appcompat.widget.AppCompatButton>
+
+        <TextView
+            android:id="@+id/tvAforoLLeno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="YA NO QUEDAN PLAZAS"
+            android:visibility="gone">
+        </TextView>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

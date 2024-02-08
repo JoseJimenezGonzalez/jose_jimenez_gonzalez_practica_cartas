@@ -84,6 +84,7 @@ class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento
             if(itemActual.aforo == itemActual.aforoOcupado){
                 //Desactivo el boton para que no se puedan apuntar mas personas
                 holder.boton.visibility = View.GONE
+                holder.mensajeAforoMaximo.visibility = View.VISIBLE
             }else{
                 holder.boton.setOnClickListener {
                     //Añadimos el evento a la base de datos
@@ -131,6 +132,7 @@ class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento
         val aforoMaximo: TextView = itemView.findViewById(R.id.tvAforoMaximo)
         val aforoOcupado: TextView = itemView.findViewById(R.id.tvAforoOcupado)
         val boton: Button = itemView.findViewById(R.id.btnApuntarseEvento)
+        val mensajeAforoMaximo: TextView = itemView.findViewById(R.id.tvAforoMaximo)
     }
 
     fun opcionesGlide(context: Context): RequestOptions {
