@@ -78,7 +78,7 @@ class ClienteComprarCartasFragment : Fragment(), OnClickListener {
     }
 
     override fun onClick(posicion: Int) {
-        //
+        configurarRecyclerView()
     }
 
 }
