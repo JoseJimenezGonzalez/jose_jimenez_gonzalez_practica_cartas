@@ -52,9 +52,11 @@ class ClienteComprarCartasFragment : Fragment(), OnClickListener {
         dbRef.child("tienda").child("cartas").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 lista.clear()
-                snapshot.children.forEach{hijo: DataSnapshot? ->
-                    val pojoCarta = hijo?.getValue(Carta::class.java)
-                    lista.add(pojoCarta!!)
+                snapshot.children.forEach{ carta ->
+                    val pojoCarta = carta?.getValue(Carta::class.java)
+                    if(pojoCarta!!.stock > 0 && pojoCarta!!.disponibilidad == "Si"){
+                        lista.add(pojoCarta!!)
+                    }
                 }
                 recycler.adapter?.notifyDataSetChanged()
             }
