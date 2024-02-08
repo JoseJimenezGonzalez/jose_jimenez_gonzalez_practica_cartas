@@ -116,6 +116,19 @@ class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento
                         )
                     )
                     listener.onClick(position)
+                    //Ahora debemos actualizar los eventos con los datos de reservas_eventos
+                    dbRef.child("tienda").child("eventos").child(idEvento).setValue(
+                        Evento(
+                            idEvento,
+                            nombreEvento,
+                            formatoEvento,
+                            fechaEvento,
+                            precioEvento,
+                            aforoMaximo,
+                            nuevoAforoOcupado,
+                            urlFoto
+                        )
+                    )
                 }
             }
         }
