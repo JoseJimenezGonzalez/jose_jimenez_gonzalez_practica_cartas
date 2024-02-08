@@ -107,8 +107,6 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, p
                         nombreCarta,
                         nombreExpansion,
                         precio,
-                        nuevoStock,
-                        disponibilidad,
                         color,
                         urlImagenCarta,
                         idReservaCarta,

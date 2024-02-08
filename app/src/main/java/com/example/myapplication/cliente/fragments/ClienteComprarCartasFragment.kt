@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.administrador.model.adapter.rv.AdaptadorCartaAdministrador
+import com.example.myapplication.cliente.model.adapter.rv.OnClickListener
 import com.example.myapplication.data.model.Carta
 import com.example.myapplication.databinding.FragmentClienteComprarCartasBinding
 import com.google.firebase.database.DataSnapshot
@@ -19,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ClienteComprarCartasFragment : Fragment() {
+class ClienteComprarCartasFragment : Fragment(), OnClickListener {
 
     private var _binding: FragmentClienteComprarCartasBinding? = null
     private val binding get() = _binding!!
@@ -64,7 +65,7 @@ class ClienteComprarCartasFragment : Fragment() {
         })
 
         //
-        adaptador = AdaptadorCartaAdministrador(lista, findNavController())
+        adaptador = AdaptadorCartaAdministrador(lista, findNavController(), this)
         apply {
             recycler = binding.rvMostrarCartas
             recycler.adapter = adaptador
@@ -72,6 +73,10 @@ class ClienteComprarCartasFragment : Fragment() {
             recycler.setHasFixedSize(true)
         }
 
+    }
+
+    override fun onClick(posicion: Int) {
+        //
     }
 
 }
