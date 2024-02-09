@@ -4,6 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +16,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.myapplication.R
 import com.example.myapplication.data.model.ReservarEvento
 
-class AdaptadorEventosCliente (private val listaEventosUsuario: MutableList<ReservarEvento>): RecyclerView.Adapter<AdaptadorEventosCliente.ReservarEventoViewHolder>(){
+class AdaptadorEventosCliente (private val listaEventosUsuario: MutableList<ReservarEvento>): RecyclerView.Adapter<AdaptadorEventosCliente.ReservarEventoViewHolder>(), Filterable {
     private lateinit var contexto: Context
     private var listaFiltrada = listaEventosUsuario
 
@@ -79,4 +81,40 @@ class AdaptadorEventosCliente (private val listaEventosUsuario: MutableList<Rese
     }
 
     val transicion = DrawableTransitionOptions.withCrossFade(500)
+
+    override fun getFilter(): Filter {
+        return object : Filter(){
+            override fun performFiltering(p0: CharSequence?): FilterResults {
+                val busqueda = p0.toString().lowercase()
+                if (busqueda.isEmpty()){
+                    listaFiltrada = listaEventosUsuario
+                }else {
+                    listaFiltrada = (listaEventosUsuario.filter {
+                        it.nombre.toString().lowercase().contains(busqueda)
+                    }) as MutableList<ReservarEvento>
+                }
+
+                val filterResults = FilterResults()
+                filterResults.values = listaFiltrada
+                return filterResults
+            }
+
+            override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
+                notifyDataSetChanged()
+            }
+        }
+    }
+
+    // Método para filtrar la lista
+    fun filter(newText: String) {
+        val busqueda = newText.lowercase()
+        if (busqueda.isEmpty()) {
+            listaFiltrada = listaEventosUsuario
+        } else {
+            listaFiltrada = listaEventosUsuario.filter {
+                it.nombre.toString().lowercase().contains(busqueda)
+            }.toMutableList()
+        }
+        notifyDataSetChanged()
+    }
 }

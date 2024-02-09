@@ -1,15 +1,15 @@
 package com.example.myapplication.administrador.model.adapter.rv
 
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
@@ -25,11 +25,11 @@ import com.example.myapplication.data.model.Usuario
 import com.example.myapplication.data.model.UsuarioActual
 import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.Date
 import java.util.Locale
 
-class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, private val navController: NavController, private val listener: OnClickListener): RecyclerView.Adapter<AdaptadorCartaAdministrador.CartaViewHolder>(){
+
+class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, private val navController: NavController, private val listener: OnClickListener): RecyclerView.Adapter<AdaptadorCartaAdministrador.CartaViewHolder>(), Filterable {
 
 
     private lateinit var contexto: Context
@@ -176,4 +176,40 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, p
     }
 
     val transicion = DrawableTransitionOptions.withCrossFade(500)
+
+    override fun getFilter(): Filter {
+        return object : Filter(){
+            override fun performFiltering(p0: CharSequence?): FilterResults {
+                val busqueda = p0.toString().lowercase()
+                if (busqueda.isEmpty()){
+                    listaFiltrada = listaCartas
+                }else {
+                    listaFiltrada = (listaCartas.filter {
+                        it.nombreCarta.toString().lowercase().contains(busqueda)
+                    }) as MutableList<Carta>
+                }
+
+                val filterResults = FilterResults()
+                filterResults.values = listaFiltrada
+                return filterResults
+            }
+
+            override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
+                notifyDataSetChanged()
+            }
+        }
+    }
+
+    // Método para filtrar la lista
+    fun filter(newText: String) {
+        val busqueda = newText.lowercase()
+        if (busqueda.isEmpty()) {
+            listaFiltrada = listaCartas
+        } else {
+            listaFiltrada = listaCartas.filter {
+                it.nombreCarta.toString().lowercase().contains(busqueda)
+            }.toMutableList()
+        }
+        notifyDataSetChanged()
+    }
 }

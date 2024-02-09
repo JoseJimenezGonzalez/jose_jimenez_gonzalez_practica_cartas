@@ -18,8 +18,10 @@ import com.example.myapplication.data.model.ReservarCarta
 import com.example.myapplication.data.model.Usuario
 import com.example.myapplication.data.model.UsuarioActual
 import com.google.firebase.database.FirebaseDatabase
+import android.widget.Filter
+import android.widget.Filterable
 
-class AdaptadorPedidosAdministrador(private val listaCartas: MutableList<ReservarCarta>, private val listener: OnClickListener): RecyclerView.Adapter<AdaptadorPedidosAdministrador.PedidoCartaViewHolder>() {
+class AdaptadorPedidosAdministrador(private val listaCartas: MutableList<ReservarCarta>, private val listener: OnClickListener): RecyclerView.Adapter<AdaptadorPedidosAdministrador.PedidoCartaViewHolder>(), Filterable {
     private lateinit var contexto: Context
     private var listaFiltrada = listaCartas
 
@@ -144,4 +146,41 @@ class AdaptadorPedidosAdministrador(private val listaCartas: MutableList<Reserva
     }
 
     val transicion = DrawableTransitionOptions.withCrossFade(500)
+
+    override fun getFilter(): Filter {
+        return object : Filter(){
+            override fun performFiltering(p0: CharSequence?): FilterResults {
+                val busqueda = p0.toString().lowercase()
+                if (busqueda.isEmpty()){
+                    listaFiltrada = listaCartas
+                }else {
+                    listaFiltrada = (listaCartas.filter {
+                        it.nombreCarta.toString().lowercase().contains(busqueda)
+                    }) as MutableList<ReservarCarta>
+                }
+
+                val filterResults = FilterResults()
+                filterResults.values = listaFiltrada
+                return filterResults
+            }
+
+            override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
+                notifyDataSetChanged()
+            }
+        }
+    }
+
+    // Método para filtrar la lista
+    fun filter(newText: String) {
+        val busqueda = newText.lowercase()
+        if (busqueda.isEmpty()) {
+            listaFiltrada = listaCartas
+        } else {
+            listaFiltrada = listaCartas.filter {
+                it.nombreCarta.toString().lowercase().contains(busqueda)
+            }.toMutableList()
+        }
+        notifyDataSetChanged()
+    }
+
 }
