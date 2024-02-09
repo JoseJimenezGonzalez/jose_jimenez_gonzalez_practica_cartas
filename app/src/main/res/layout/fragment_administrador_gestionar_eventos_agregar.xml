@@ -33,9 +33,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cvImagen"
         app:layout_constraintBottom_toTopOf="@id/tilFormatoTorneo"
-        app:boxStrokeColor="@android:color/darker_gray"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
+        app:boxStrokeColor="#4452A1"
+        android:textColorHint="@color/black"
         android:hint="Nombre">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -52,9 +55,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tilNombreEvento"
         app:layout_constraintBottom_toTopOf="@id/tilFechaEvento"
-        app:boxStrokeColor="@android:color/darker_gray"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
+        app:boxStrokeColor="#4452A1"
+        android:textColorHint="@color/black"
         android:hint="Formato del torneo">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -71,9 +77,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tilPrecioEvento"
         app:layout_constraintTop_toBottomOf="@id/tilFormatoTorneo"
-        app:boxStrokeColor="@android:color/darker_gray"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
+        app:boxStrokeColor="#4452A1"
+        android:textColorHint="@color/black"
         android:hint="Fecha del evento">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -92,9 +101,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tilAforoEvento"
         app:layout_constraintTop_toBottomOf="@id/tilFechaEvento"
-        app:boxStrokeColor="@android:color/darker_gray"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
+        app:boxStrokeColor="#4452A1"
+        android:textColorHint="@color/black"
         android:hint="Precio del evento">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -111,9 +123,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btnAgregarEvento"
         app:layout_constraintTop_toBottomOf="@id/tilPrecioEvento"
-        app:boxStrokeColor="@android:color/darker_gray"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
+        app:boxStrokeColor="#4452A1"
+        android:textColorHint="@color/black"
         android:hint="Aforo del evento">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -130,7 +145,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tilAforoEvento">
+        app:layout_constraintTop_toBottomOf="@id/tilAforoEvento"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:background="#4452A1"
+        android:textColor="@color/white">
     </androidx.appcompat.widget.AppCompatButton>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

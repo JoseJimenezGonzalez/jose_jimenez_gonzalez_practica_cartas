@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegistrarUsuarioActivity">
+    tools:context=".RegistrarUsuarioActivity"
+    android:background="#080F33">
 
     <TextView
         android:id="@+id/tvTitulo"
@@ -14,6 +15,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tvDescripcion"
+        android:textSize="26sp"
+        android:textColor="@color/white"
         android:text="Registro">
     </TextView>
     <TextView
@@ -24,6 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitulo"
         app:layout_constraintBottom_toTopOf="@id/tilNombre"
+        android:textColor="@color/white"
         android:text="Completa este formulario">
     </TextView>
 
@@ -35,17 +39,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvDescripcion"
         app:layout_constraintBottom_toTopOf="@id/tilApellidos"
-        app:boxStrokeColor="@android:color/darker_gray"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
         android:hint="Nombre"
         android:paddingLeft="14dp"
-        android:paddingRight="14dp">
+        android:paddingRight="14dp"
+        app:boxStrokeColor="#4452A1"
+        android:textColorHint="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietNombre"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -56,17 +62,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tilNombre"
         app:layout_constraintBottom_toTopOf="@id/tilCorreo"
-        app:boxStrokeColor="@android:color/darker_gray"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
         android:hint="Apellidos"
         android:paddingLeft="14dp"
-        android:paddingRight="14dp">
+        android:paddingRight="14dp"
+        app:boxStrokeColor="#4452A1"
+        android:textColorHint="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietApellidos"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -77,17 +85,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tilApellidos"
         app:layout_constraintBottom_toTopOf="@id/tilPassword"
-        app:boxStrokeColor="@android:color/darker_gray"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
         android:hint="Correo"
         android:paddingLeft="14dp"
-        android:paddingRight="14dp">
+        android:paddingRight="14dp"
+        app:boxStrokeColor="#4452A1"
+        android:textColorHint="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietCorreo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -99,17 +109,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tilCorreo"
         app:layout_constraintBottom_toTopOf="@id/tilRepetirPassword"
-        app:boxStrokeColor="@android:color/darker_gray"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
         android:hint="Contraseña"
         android:paddingLeft="14dp"
-        android:paddingRight="14dp">
+        android:paddingRight="14dp"
+        app:boxStrokeColor="#4452A1"
+        android:textColorHint="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -120,17 +132,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tilPassword"
         app:layout_constraintBottom_toTopOf="@id/btnRegistrarUsuario"
-        app:boxStrokeColor="@android:color/darker_gray"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
         android:hint="Repetir contraseña"
         android:paddingLeft="14dp"
-        android:paddingRight="14dp">
+        android:paddingRight="14dp"
+        app:boxStrokeColor="#4452A1"
+        android:textColorHint="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietRepetirPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -143,7 +157,9 @@
         app:layout_constraintBottom_toTopOf="@id/tvVolverIniciarSesion"
         android:text="Registrarse"
         android:layout_marginLeft="14dp"
-        android:layout_marginRight="14dp">
+        android:layout_marginRight="14dp"
+        android:background="#4452A1"
+        android:textColor="@color/white">
     </androidx.appcompat.widget.AppCompatButton>
 
     <TextView
@@ -154,7 +170,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Ir a iniciar sesión">
+        android:text="Ir a iniciar sesión"
+        android:textColor="@color/white"
+        android:textStyle="bold">
     </TextView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

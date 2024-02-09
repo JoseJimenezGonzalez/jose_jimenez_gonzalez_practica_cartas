@@ -27,7 +27,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tilCorreo"
         android:text="Inicia sesión para poder comprar cartas"
-        android:textColor="@color/white">
+        android:textColor="@color/white"
+        android:textSize="20sp">
     </TextView>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -43,7 +44,8 @@
         android:paddingLeft="14dp"
         android:paddingRight="14dp"
         app:boxStrokeWidth="2dp"
-        android:hint="Correo">
+        android:hint="Correo"
+        app:hintTextColor="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietCorreo"
@@ -66,7 +68,8 @@
         android:hint="Contraseña"
         android:textColorHint="@color/white"
         android:paddingLeft="14dp"
-        android:paddingRight="14dp">
+        android:paddingRight="14dp"
+        app:hintTextColor="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietPassword"
@@ -112,6 +115,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:textColor="@color/white"
+        android:textStyle="bold"
         android:text="Crear cuenta">
     </TextView>
 

@@ -26,6 +26,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/option_menu_cliente"
-        app:backgroundTint = "#F1E9FA"/>
+        app:backgroundTint = "#080F33"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

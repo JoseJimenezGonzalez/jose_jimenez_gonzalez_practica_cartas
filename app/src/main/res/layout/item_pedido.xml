@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="14dp"
-    android:backgroundTint="#F1E9FA">
+    android:backgroundTint="#D0DFEC">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -101,7 +101,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:text="Procesar pedido">
+            android:background="#4452A1"
+            android:text="Procesar pedido"
+            android:textColor="@color/white"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
         </androidx.appcompat.widget.AppCompatButton>
 
 

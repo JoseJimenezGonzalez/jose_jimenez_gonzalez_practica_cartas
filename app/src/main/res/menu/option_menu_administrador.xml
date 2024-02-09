@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/administradorGestionarVentasFragment"
-        android:icon="@drawable/ic_buy_cart"
+        android:icon="@drawable/ic_cart_shopping"
         android:title="Ventas" />
 
     <item

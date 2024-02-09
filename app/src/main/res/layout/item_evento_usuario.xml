@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="14dp"
-    android:backgroundTint="#F1E9FA">
+    android:backgroundTint="#D0DFEC">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"

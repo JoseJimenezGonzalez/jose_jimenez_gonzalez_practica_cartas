@@ -186,6 +186,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginLeft="14dp"
         android:layout_marginRight="14dp"
+        android:background="#4452A1"
+        android:textColor="@color/white"
         android:text="Modificar carta">
     </androidx.appcompat.widget.AppCompatButton>
 
