@@ -38,7 +38,9 @@
         app:boxStrokeColor="@android:color/darker_gray"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
-        android:hint="Nombre">
+        android:hint="Nombre"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietNombre"
@@ -57,7 +59,9 @@
         app:boxStrokeColor="@android:color/darker_gray"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
-        android:hint="Apellidos">
+        android:hint="Apellidos"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietApellidos"
@@ -76,7 +80,9 @@
         app:boxStrokeColor="@android:color/darker_gray"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
-        android:hint="Correo">
+        android:hint="Correo"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietCorreo"
@@ -96,7 +102,9 @@
         app:boxStrokeColor="@android:color/darker_gray"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
-        android:hint="Contraseña">
+        android:hint="Contraseña"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietPassword"
@@ -115,7 +123,9 @@
         app:boxStrokeColor="@android:color/darker_gray"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
-        android:hint="Repetir contraseña">
+        android:hint="Repetir contraseña"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietRepetirPassword"
@@ -131,7 +141,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tvVolverIniciarSesion"
-        android:text="Registrarse">
+        android:text="Registrarse"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp">
     </androidx.appcompat.widget.AppCompatButton>
 
     <TextView

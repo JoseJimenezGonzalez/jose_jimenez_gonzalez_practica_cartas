@@ -34,6 +34,8 @@
         app:boxStrokeColor="@android:color/darker_gray"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
         android:hint="Nombre">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -52,6 +54,8 @@
         app:layout_constraintBottom_toTopOf="@id/lyPrecioStock"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:hint="Expansión">
 
@@ -81,6 +85,8 @@
             app:boxStrokeColor="@android:color/darker_gray"
             app:errorEnabled="true"
             app:boxStrokeWidth="2dp"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
             android:hint="Precio">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -98,6 +104,8 @@
             app:boxStrokeColor="@android:color/darker_gray"
             app:errorEnabled="true"
             app:boxStrokeWidth="2dp"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
             android:hint="Stock">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -128,6 +136,8 @@
             android:layout_weight="1"
             app:errorEnabled="true"
             app:boxStrokeWidth="2dp"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:hint="Disponible">
 
@@ -148,6 +158,8 @@
             android:layout_weight="1"
             app:errorEnabled="true"
             app:boxStrokeWidth="2dp"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:hint="Color">
 
@@ -172,6 +184,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
         android:text="Añadir carta">
     </androidx.appcompat.widget.AppCompatButton>
 

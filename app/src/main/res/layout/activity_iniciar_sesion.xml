@@ -37,6 +37,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tilPassword"
         app:boxStrokeColor="@android:color/darker_gray"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
         app:boxStrokeWidth="2dp"
         android:hint="Correo">
 
@@ -57,7 +59,9 @@
         app:boxStrokeColor="@android:color/darker_gray"
         app:endIconMode="password_toggle"
         app:boxStrokeWidth="2dp"
-        android:hint="Contraseña">
+        android:hint="Contraseña"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietPassword"
@@ -74,6 +78,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tvTienesCuenta"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
         android:text="Iniciar sesion">
     </androidx.appcompat.widget.AppCompatButton>
 
