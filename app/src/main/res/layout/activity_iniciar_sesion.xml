@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IniciarSesionActivity">
+    tools:context=".IniciarSesionActivity"
+    android:background="#080F33">
 
     <ImageView
         android:id="@+id/ivLogoMagic"
@@ -25,7 +26,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tilCorreo"
-        android:text="Inicia sesión para poder comprar cartas">
+        android:text="Inicia sesión para poder comprar cartas"
+        android:textColor="@color/white">
     </TextView>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -36,7 +38,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tilPassword"
-        app:boxStrokeColor="@android:color/darker_gray"
+        app:boxStrokeColor="#4452A1"
+        android:textColorHint="@color/white"
         android:paddingLeft="14dp"
         android:paddingRight="14dp"
         app:boxStrokeWidth="2dp"
@@ -45,7 +48,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietCorreo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -56,10 +60,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btnIniciarSesion"
-        app:boxStrokeColor="@android:color/darker_gray"
+        app:boxStrokeColor="#4452A1"
         app:endIconMode="password_toggle"
         app:boxStrokeWidth="2dp"
         android:hint="Contraseña"
+        android:textColorHint="@color/white"
         android:paddingLeft="14dp"
         android:paddingRight="14dp">
 
@@ -67,7 +72,8 @@
             android:id="@+id/tietPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            android:textColor="@color/white"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -80,6 +86,8 @@
         app:layout_constraintBottom_toTopOf="@id/tvTienesCuenta"
         android:layout_marginLeft="14dp"
         android:layout_marginRight="14dp"
+        android:background="#4452A1"
+        android:textColor="@color/white"
         android:text="Iniciar sesion">
     </androidx.appcompat.widget.AppCompatButton>
 
@@ -91,6 +99,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tvCrearCuenta"
+        android:textColor="@color/white"
         android:text="¿Aún no tienes una cuenta?">
     </TextView>
 
@@ -102,6 +111,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/white"
         android:text="Crear cuenta">
     </TextView>
 
