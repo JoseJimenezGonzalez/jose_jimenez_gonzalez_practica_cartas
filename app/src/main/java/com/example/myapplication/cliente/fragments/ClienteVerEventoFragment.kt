@@ -3,11 +3,14 @@ package com.example.myapplication.cliente.fragments
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
 import com.example.myapplication.cliente.model.adapter.rv.AdaptadorEventosCliente
 import com.example.myapplication.data.model.ReservarEvento
 import com.example.myapplication.data.model.Usuario
@@ -50,8 +53,8 @@ class ClienteVerEventoFragment : Fragment() {
             idUsuario = usuarioActual.idUsuario
         }
         configurarRecyclerView()
-
-        Log.e("Numero de eventos", lista.size.toString())
+        configurarMenuPopup()
+        configurarSearchView()
 
 
     }
@@ -85,5 +88,88 @@ class ClienteVerEventoFragment : Fragment() {
             recycler.layoutManager = LinearLayoutManager(context)
             recycler.setHasFixedSize(true)
         }
+    }
+
+    private fun configurarSearchView() {
+        // Configurar el SearchView
+        binding.svBuscaEvento.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adaptador.filter(newText.orEmpty())
+                return true
+            }
+        })
+    }
+
+    private fun configurarMenuPopup() {
+        //Boton popup
+        binding.ivMenuOpciones.setOnClickListener {
+            mostrarPopupMenu(it)
+        }
+    }
+
+    private fun mostrarPopupMenu(view: View?) {
+        // Crear instancia de PopupMenu
+        val popupMenu = view?.let { android.widget.PopupMenu(context, it) }
+
+        // Inflar el menú desde el archivo XML
+        popupMenu?.menuInflater?.inflate(R.menu.popup_menu_administrador_eventos, popupMenu.menu)
+
+        // Establecer un listener para manejar clics en las opciones del menú
+        popupMenu?.setOnMenuItemClickListener { menuItem: MenuItem ->
+            when (menuItem.itemId) {
+                R.id.action_sort_name -> {
+                    // Lógica para la opción "ordenar alfabeticamente"
+                    lista.sortBy { evento ->
+                        evento.nombre
+                    }
+                    recycler.adapter?.notifyDataSetChanged()
+                    true
+                }
+
+                R.id.action_sort_precio -> {
+                    // Lógica para la opción "ordenar por precio"
+                    lista.sortByDescending { evento ->
+                        evento.precio
+                    }
+                    recycler.adapter?.notifyDataSetChanged()
+                    true
+                }
+
+                R.id.action_sort_ocupacion -> {
+                    // Lógica para la opción "ordenar por ocupacion"
+                    lista.sortByDescending { evento ->
+                        evento.aforoOcupado
+                    }
+                    recycler.adapter?.notifyDataSetChanged()
+                    true
+                }
+
+                R.id.action_sort_aforo -> {
+                    // Lógica para la opción "ordenar por aforo"
+                    lista.sortByDescending { evento ->
+                        evento.aforo
+                    }
+                    recycler.adapter?.notifyDataSetChanged()
+                    true
+                }
+
+                R.id.action_sort_fecha -> {
+                    // Lógica para la opción "ordenar por fecha"
+                    lista.sortByDescending { evento ->
+                        evento.fecha
+                    }
+                    recycler.adapter?.notifyDataSetChanged()
+                    true
+                }
+
+                else -> false
+            }
+        }
+        // Mostrar el menú emergente
+        popupMenu?.show()
     }
 }

@@ -46,6 +46,8 @@ class AdministradorGestionarVentasProcesadosFragment : Fragment(), OnClickListen
 
         //Codigo
         configurarRecyclerView()
+        configurarSearchView()
+        configurarMenuPopup()
 
     }
 

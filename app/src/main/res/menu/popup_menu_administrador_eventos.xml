@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_sort_name"
+        android:title="Por nombre" />
+    <item
+        android:id="@+id/action_sort_precio"
+        android:title="Por precio" />
+    <item
+        android:id="@+id/action_sort_fecha"
+        android:title="Por fecha" />
+    <item
+        android:id="@+id/action_sort_aforo"
+        android:title="Por aforo" />
+    <item
+        android:id="@+id/action_sort_ocupacion"
+        android:title="Por aforo ocupado" />
+</menu>
