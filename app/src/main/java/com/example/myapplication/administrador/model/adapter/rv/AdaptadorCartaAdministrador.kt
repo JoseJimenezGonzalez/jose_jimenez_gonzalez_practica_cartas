@@ -1,6 +1,7 @@
 package com.example.myapplication.administrador.model.adapter.rv
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
@@ -22,6 +24,10 @@ import com.example.myapplication.data.model.ReservarCarta
 import com.example.myapplication.data.model.Usuario
 import com.example.myapplication.data.model.UsuarioActual
 import com.google.firebase.database.FirebaseDatabase
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.util.Date
+import java.util.Locale
 
 class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, private val navController: NavController, private val listener: OnClickListener): RecyclerView.Adapter<AdaptadorCartaAdministrador.CartaViewHolder>(){
 
@@ -100,6 +106,9 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, p
                 //Lo metemos como en preparacion, hasta que el admin no confirme no pasa a preparado
                 val estadoPedido = "preparacion"
                 val idReservaCarta = dbRef.child("tienda").child("reservas_carta").push().key
+                //Obtenemos la fecha actual
+                val fechaActualSinFormatear = Date()
+                val fechaActualFormateada = obtenerFormateada(fechaActualSinFormatear)
                 //La añadimos a preparacion
                 dbRef.child("tienda").child("reservas_carta").child(idReservaCarta!!).setValue(
                     ReservarCarta(
@@ -111,7 +120,8 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, p
                         urlImagenCarta,
                         idReservaCarta,
                         idUsuario,
-                        estadoPedido
+                        estadoPedido,
+                        fechaActualFormateada
                     )
                 )
                 //Le quitamos 1 de stock
@@ -159,6 +169,10 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, p
         animacion.centerRadius = 30f
         animacion.start()
         return animacion
+    }
+
+    private fun obtenerFormateada(fechaLanzamiento: Date): String {
+        return SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(fechaLanzamiento)
     }
 
     val transicion = DrawableTransitionOptions.withCrossFade(500)

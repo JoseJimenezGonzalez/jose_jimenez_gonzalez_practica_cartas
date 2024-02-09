@@ -9,5 +9,6 @@ data class ReservarCarta(
     val urlImagenCarta: String = "",
     val idReserva: String = "",
     val idUsuario: String = "",
-    val estado: String = ""
+    val estado: String = "",
+    val fecha: String = ""
 )

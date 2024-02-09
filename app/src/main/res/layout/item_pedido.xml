@@ -62,6 +62,14 @@
         </TextView>
 
         <TextView
+            android:id="@+id/tvFechaCompra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Fecha de la compra">
+        </TextView>
+
+        <TextView
             android:id="@+id/tvIdCarta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

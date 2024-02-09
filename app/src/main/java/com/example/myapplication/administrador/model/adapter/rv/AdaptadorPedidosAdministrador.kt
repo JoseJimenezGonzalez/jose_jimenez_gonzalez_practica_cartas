@@ -15,11 +15,16 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.myapplication.R
 import com.example.myapplication.cliente.model.adapter.rv.OnClickListener
 import com.example.myapplication.data.model.ReservarCarta
+import com.example.myapplication.data.model.Usuario
+import com.example.myapplication.data.model.UsuarioActual
 import com.google.firebase.database.FirebaseDatabase
 
 class AdaptadorPedidosAdministrador(private val listaCartas: MutableList<ReservarCarta>, private val listener: OnClickListener): RecyclerView.Adapter<AdaptadorPedidosAdministrador.PedidoCartaViewHolder>() {
     private lateinit var contexto: Context
     private var listaFiltrada = listaCartas
+
+    var tipoUsuario = ""
+    var idUsuario = ""
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -42,6 +47,7 @@ class AdaptadorPedidosAdministrador(private val listaCartas: MutableList<Reserva
         holder.idCarta.text = itemActual.idCarta
         holder.idUsuario.text = itemActual.idUsuario
         holder.idReserva.text = itemActual.idReserva
+        holder.fechaCompra.text = itemActual.fecha
 
         val URL: String? = when(itemActual.urlImagenCarta){
             "" -> null
@@ -86,7 +92,21 @@ class AdaptadorPedidosAdministrador(private val listaCartas: MutableList<Reserva
 
         }
 
-        if(itemActual.estado == "preparado"){
+        //Obtenemos el usuario
+        if(UsuarioActual.usuarioActual != null){
+            val usuarioActual: Usuario = UsuarioActual.usuarioActual!!
+            tipoUsuario = usuarioActual.tipoDeUsuario
+            idUsuario = usuarioActual.tipoDeUsuario
+        }
+
+        if(tipoUsuario == "administrador"){
+            if(itemActual.estado == "preparado"){
+                holder.botonReserva.visibility = View.GONE
+            }
+        }else{
+            holder.estadoCarta.visibility = View.GONE
+            holder.idCarta.visibility = View.GONE
+            holder.idUsuario.visibility = View.GONE
             holder.botonReserva.visibility = View.GONE
         }
     }
@@ -104,6 +124,7 @@ class AdaptadorPedidosAdministrador(private val listaCartas: MutableList<Reserva
         val idCarta: TextView = itemView.findViewById(R.id.tvIdCarta)
         val idUsuario: TextView = itemView.findViewById(R.id.tvIdUsuario)
         val idReserva: TextView = itemView.findViewById(R.id.tvIdReserva)
+        val fechaCompra: TextView = itemView.findViewById(R.id.tvFechaCompra)
         val botonReserva: Button = itemView.findViewById(R.id.btnProcesarPedido)
     }
 

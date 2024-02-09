@@ -40,4 +40,9 @@
         android:name="com.example.myapplication.cliente.fragments.ClienteGestionarEventosFragment"
         android:label="fragment_cliente_gestionar_eventos"
         tools:layout="@layout/fragment_cliente_gestionar_eventos" />
+    <fragment
+        android:id="@+id/clienteBuscarCartaFragment"
+        android:name="com.example.myapplication.cliente.fragments.ClienteBuscarCartaFragment"
+        android:label="fragment_cliente_buscar_carta"
+        tools:layout="@layout/fragment_cliente_buscar_carta" />
 </navigation>
