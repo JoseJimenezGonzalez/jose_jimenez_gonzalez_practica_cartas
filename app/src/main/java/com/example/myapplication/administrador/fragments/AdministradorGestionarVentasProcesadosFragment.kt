@@ -125,6 +125,15 @@ class AdministradorGestionarVentasProcesadosFragment : Fragment(), OnClickListen
                     true
                 }
 
+                R.id.action_sort_color -> {
+                    // Lógica para la opción "ordenar por color"
+                    lista.sortByDescending { venta ->
+                        venta.color
+                    }
+                    recycler.adapter?.notifyDataSetChanged()
+                    true
+                }
+
                 R.id.action_sort_precio -> {
                     // Lógica para la opción "ordenar por precio"
                     lista.sortByDescending { venta ->

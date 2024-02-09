@@ -9,4 +9,7 @@
     <item
         android:id="@+id/action_sort_fecha"
         android:title="Por fecha de compra" />
+    <item
+        android:id="@+id/action_sort_color"
+        android:title="Por color" />
 </menu>

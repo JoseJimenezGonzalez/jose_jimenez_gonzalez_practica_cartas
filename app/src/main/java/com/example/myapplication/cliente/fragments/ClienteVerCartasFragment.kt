@@ -147,6 +147,15 @@ class ClienteVerCartasFragment : Fragment(), OnClickListener {
                     true
                 }
 
+                R.id.action_sort_color -> {
+                    // Lógica para la opción "ordenar por color"
+                    lista.sortByDescending { venta ->
+                        venta.color
+                    }
+                    recycler.adapter?.notifyDataSetChanged()
+                    true
+                }
+
                 R.id.action_sort_stock -> {
                     // Lógica para la opción "ordenar por fecha"
                     lista.sortByDescending { venta ->
