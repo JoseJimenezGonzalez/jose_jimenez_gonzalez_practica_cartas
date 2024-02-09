@@ -19,12 +19,12 @@ class AdministradorGestionarVentasFragment : Fragment() {
     private var _binding: FragmentAdministradorGestionarVentasBinding? = null
     private val binding get() = _binding!!
 
-    private val listaNombreOpciones = listOf("Procesados", "No procesados")
+    private val listaNombreOpciones = listOf("No procesados", "Procesados")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAdministradorGestionarVentasBinding.inflate(inflater, container, false)
         return binding.root
     }

@@ -80,16 +80,6 @@
             android:text="Apuntarse a evento">
         </androidx.appcompat.widget.AppCompatButton>
 
-        <TextView
-            android:id="@+id/tvAforoLLeno"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            android:text="YA NO QUEDAN PLAZAS"
-            android:visibility="gone">
-        </TextView>
-
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </com.google.android.material.card.MaterialCardView>

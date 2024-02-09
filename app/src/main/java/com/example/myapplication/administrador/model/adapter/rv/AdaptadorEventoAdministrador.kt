@@ -80,56 +80,49 @@ class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento
                 navController.navigate(R.id.action_administradorGestionarCartasFragment_to_administradorGestionarCartasModificarFragment, bundle)
             }
         }else{
-            //Usuario
-            if(itemActual.aforo == itemActual.aforoOcupado){
-                //Desactivo el boton para que no se puedan apuntar mas personas
-                holder.boton.visibility = View.GONE
-                holder.mensajeAforoMaximo.visibility = View.VISIBLE
-            }else{
-                holder.boton.setOnClickListener {
-                    //Añadimos el evento a la base de datos
-                    val dbRef = FirebaseDatabase.getInstance().reference
-                    //Atributos del evento
-                    val urlFoto = itemActual.urlImagenEvento
-                    val nombreEvento = itemActual.nombre
-                    val formatoEvento = itemActual.formato
-                    val aforoMaximo = itemActual.aforo
-                    val aforoOcupado = itemActual.aforoOcupado
-                    val precioEvento = itemActual.precio
-                    val fechaEvento = itemActual.fecha
-                    val idEvento = itemActual.id
-                    val idReservaEvento = dbRef.child("tienda").child("reservas_eventos").push().key
-                    //Tenemos que actualizar las plazas de ocupados
-                    val nuevoAforoOcupado = aforoOcupado + 1
-                    dbRef.child("tienda").child("reservas_eventos").child(idReservaEvento!!).setValue(
-                        ReservarEvento(
-                            idReservaEvento,
-                            idEvento,
-                            idUsuario,
-                            nombreEvento,
-                            formatoEvento,
-                            fechaEvento,
-                            precioEvento,
-                            aforoMaximo,
-                            nuevoAforoOcupado,
-                            urlFoto
-                        )
+            holder.boton.setOnClickListener {
+                //Añadimos el evento a la base de datos
+                val dbRef = FirebaseDatabase.getInstance().reference
+                //Atributos del evento
+                val urlFoto = itemActual.urlImagenEvento
+                val nombreEvento = itemActual.nombre
+                val formatoEvento = itemActual.formato
+                val aforoMaximo = itemActual.aforo
+                val aforoOcupado = itemActual.aforoOcupado
+                val precioEvento = itemActual.precio
+                val fechaEvento = itemActual.fecha
+                val idEvento = itemActual.id
+                val idReservaEvento = dbRef.child("tienda").child("reservas_eventos").push().key
+                //Tenemos que actualizar las plazas de ocupados
+                val nuevoAforoOcupado = aforoOcupado + 1
+                dbRef.child("tienda").child("reservas_eventos").child(idReservaEvento!!).setValue(
+                    ReservarEvento(
+                        idReservaEvento,
+                        idEvento,
+                        idUsuario,
+                        nombreEvento,
+                        formatoEvento,
+                        fechaEvento,
+                        precioEvento,
+                        aforoMaximo,
+                        nuevoAforoOcupado,
+                        urlFoto
                     )
-                    listener.onClick(position)
-                    //Ahora debemos actualizar los eventos con los datos de reservas_eventos
-                    dbRef.child("tienda").child("eventos").child(idEvento).setValue(
-                        Evento(
-                            idEvento,
-                            nombreEvento,
-                            formatoEvento,
-                            fechaEvento,
-                            precioEvento,
-                            aforoMaximo,
-                            nuevoAforoOcupado,
-                            urlFoto
-                        )
+                )
+                listener.onClick(position)
+                //Ahora debemos actualizar los eventos con los datos de reservas_eventos
+                dbRef.child("tienda").child("eventos").child(idEvento).setValue(
+                    Evento(
+                        idEvento,
+                        nombreEvento,
+                        formatoEvento,
+                        fechaEvento,
+                        precioEvento,
+                        aforoMaximo,
+                        nuevoAforoOcupado,
+                        urlFoto
                     )
-                }
+                )
             }
         }
     }
@@ -145,7 +138,6 @@ class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento
         val aforoMaximo: TextView = itemView.findViewById(R.id.tvAforoMaximo)
         val aforoOcupado: TextView = itemView.findViewById(R.id.tvAforoOcupado)
         val boton: Button = itemView.findViewById(R.id.btnApuntarseEvento)
-        val mensajeAforoMaximo: TextView = itemView.findViewById(R.id.tvAforoMaximo)
     }
 
     fun opcionesGlide(context: Context): RequestOptions {

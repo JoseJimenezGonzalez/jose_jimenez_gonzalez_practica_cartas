@@ -60,11 +60,13 @@ class ClienteApuntarEventoFragment : Fragment(), OnClickListener {
         dbRef.child("tienda").child("eventos").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 lista.clear()
-                snapshot.children.forEach{hijo: DataSnapshot? ->
-                    val pojoEvento = hijo?.getValue(Evento::class.java)
-                    val idEvento = pojoEvento!!.id
-                    if(!listaIdEventos.contains(idEvento)){
-                        lista.add(pojoEvento)
+                snapshot.children.forEach{ evento ->
+                    val pojoEvento = evento?.getValue(Evento::class.java)
+                    if(pojoEvento!!.aforoOcupado != pojoEvento.aforo){
+                        val idEvento = pojoEvento!!.id
+                        if(!listaIdEventos.contains(idEvento)){
+                            lista.add(pojoEvento)
+                        }
                     }
                 }
                 recycler.adapter?.notifyDataSetChanged()
