@@ -19,7 +19,7 @@ class ClienteGestionarCartasFragment : Fragment() {
     private var _binding: FragmentClienteGestionarCartasBinding? = null
     private val binding get() = _binding!!
 
-    private val listaNombreOpciones = listOf("Comprar", "Mi colección")
+    private val listaNombreOpciones = listOf("Comprar", "Mis compras")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
