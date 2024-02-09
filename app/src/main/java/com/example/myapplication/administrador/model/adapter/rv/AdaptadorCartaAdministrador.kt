@@ -2,6 +2,7 @@ package com.example.myapplication.administrador.model.adapter.rv
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -109,6 +110,7 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, p
                 //Obtenemos la fecha actual
                 val fechaActualSinFormatear = Date()
                 val fechaActualFormateada = obtenerFormateada(fechaActualSinFormatear)
+                Log.e("Fecha", fechaActualFormateada)
                 //La añadimos a preparacion
                 dbRef.child("tienda").child("reservas_carta").child(idReservaCarta!!).setValue(
                     ReservarCarta(

@@ -75,6 +75,7 @@ class AdaptadorPedidosAdministrador(private val listaCartas: MutableList<Reserva
             val color = itemActual.color
             val urlImagenCarta = itemActual.urlImagenCarta
             val nuevoEstado = "preparado"
+            val fechaCompra = itemActual.fecha
 
             dbRef.child("tienda").child("reservas_carta").child(idReserva).setValue(
                 ReservarCarta(
@@ -86,7 +87,8 @@ class AdaptadorPedidosAdministrador(private val listaCartas: MutableList<Reserva
                     urlImagenCarta,
                     idReserva,
                     idUsuario,
-                    nuevoEstado
+                    nuevoEstado,
+                    fechaCompra
                 )
             )
             listener.onClick(position)
