@@ -33,12 +33,12 @@ class AdaptadorEventosCliente (private val listaEventosUsuario: MutableList<Rese
 
         val itemActual = listaFiltrada[position]
 
-        holder.nombreEvento.text = itemActual.nombre
-        holder.formatoEvento.text = itemActual.formato
-        holder.precio.text = itemActual.precio.toString()
-        holder.fechaEvento.text = itemActual.fecha
-        holder.aforoMaximo.text = itemActual.aforo.toString()
-        holder.aforoOcupado.text = itemActual.aforoOcupado.toString()
+        holder.nombreEvento.text = "Nombre del torneo: " + itemActual.nombre
+        holder.formatoEvento.text = "Formato del torneo: " + itemActual.formato
+        holder.precio.text = "Precio del torneo: " + itemActual.precio.toString() + " euros"
+        holder.fechaEvento.text = "Fecha del evento: " + itemActual.fecha
+        holder.aforoMaximo.text = "Aforo maximo del torneo: " + itemActual.aforo.toString()
+        holder.aforoOcupado.text = "Aforo ocupado del torneo: " + itemActual.aforoOcupado.toString()
 
         val URL: String? = when(itemActual.urlImagenEvento){
             "" -> null

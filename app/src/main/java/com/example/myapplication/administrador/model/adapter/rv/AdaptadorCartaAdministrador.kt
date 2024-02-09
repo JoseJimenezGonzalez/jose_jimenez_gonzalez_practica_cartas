@@ -51,12 +51,12 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, p
 
         val itemActual = listaFiltrada[position]
 
-        holder.nombreCarta.text = itemActual.nombreCarta
-        holder.nombreExpansion.text = itemActual.nombreExpansion
-        holder.precio.text = itemActual.precio.toString()
-        holder.stock.text = itemActual.stock.toString()
-        holder.disponibilidad.text = itemActual.disponibilidad
-        holder.colorCarta.text = itemActual.color
+        holder.nombreCarta.text = "Nombre: " + itemActual.nombreCarta
+        holder.nombreExpansion.text = "Nombre de la expansión: " + itemActual.nombreExpansion
+        holder.precio.text = "Precio : " + itemActual.precio.toString() + " euros"
+        holder.stock.text = "Stock: " + itemActual.stock.toString()
+        holder.disponibilidad.text = "Disponibilidad: " + itemActual.disponibilidad
+        holder.colorCarta.text = "Color de la carta: " + itemActual.color
 
         val URL: String? = when(itemActual.urlImagenCarta){
             "" -> null
@@ -81,7 +81,7 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, p
         if(UsuarioActual.usuarioActual != null){
             val usuarioActual: Usuario = UsuarioActual.usuarioActual!!
             tipoUsuario = usuarioActual.tipoDeUsuario
-            idUsuario = usuarioActual.tipoDeUsuario
+            idUsuario = usuarioActual.idUsuario
         }
 
         if(tipoUsuario == "administrador"){

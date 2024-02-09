@@ -52,12 +52,12 @@ class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento
 
         val itemActual = listaFiltrada[position]
 
-        holder.nombreEvento.text = itemActual.nombre
-        holder.formatoEvento.text = itemActual.formato
-        holder.precio.text = itemActual.precio.toString()
-        holder.fechaEvento.text = itemActual.fecha
-        holder.aforoMaximo.text = itemActual.aforo.toString()
-        holder.aforoOcupado.text = itemActual.aforoOcupado.toString()
+        holder.nombreEvento.text = "Nombre del torneo: " + itemActual.nombre
+        holder.formatoEvento.text = "Formato del torneo: " + itemActual.formato
+        holder.precio.text = "Precio: " + itemActual.precio.toString() + " euros"
+        holder.fechaEvento.text = "Fecha del evento: " + itemActual.fecha
+        holder.aforoMaximo.text = "Aforo maximo del torneo: " + itemActual.aforo.toString() + " plazas"
+        holder.aforoOcupado.text = "Aforo ocupado: " + itemActual.aforoOcupado.toString() + " plazas"
 
         val URL: String? = when(itemActual.urlImagenEvento){
             "" -> null

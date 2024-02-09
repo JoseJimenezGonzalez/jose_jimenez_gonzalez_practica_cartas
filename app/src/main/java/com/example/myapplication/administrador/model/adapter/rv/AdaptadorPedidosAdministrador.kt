@@ -41,15 +41,15 @@ class AdaptadorPedidosAdministrador(private val listaCartas: MutableList<Reserva
 
         val itemActual = listaFiltrada[position]
 
-        holder.nombreCarta.text = itemActual.nombreCarta
-        holder.nombreExpansion.text = itemActual.nombreExpansion
-        holder.precio.text = itemActual.precio.toString()
-        holder.colorCarta.text = itemActual.color
-        holder.estadoCarta.text = itemActual.estado
-        holder.idCarta.text = itemActual.idCarta
-        holder.idUsuario.text = itemActual.idUsuario
-        holder.idReserva.text = itemActual.idReserva
-        holder.fechaCompra.text = itemActual.fecha
+        holder.nombreCarta.text = "Nombre : " + itemActual.nombreCarta
+        holder.nombreExpansion.text = "Nombre de expansión: " + itemActual.nombreExpansion
+        holder.precio.text = "Precio: " + itemActual.precio.toString() + " euros"
+        holder.colorCarta.text = "Color: " + itemActual.color
+        holder.estadoCarta.text = "Estado preparación del pedido: " + itemActual.estado
+        holder.idCarta.text = "Id de la carta: " + itemActual.idCarta
+        holder.idUsuario.text = "Id de usuario: " + itemActual.idUsuario
+        holder.idReserva.text = "Id de la reserva: " + itemActual.idReserva
+        holder.fechaCompra.text = "Fecha de la compra: " + itemActual.fecha
 
         val URL: String? = when(itemActual.urlImagenCarta){
             "" -> null
