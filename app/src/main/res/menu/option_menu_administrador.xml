@@ -21,4 +21,9 @@
         android:icon="@drawable/ic_events"
         android:title="Eventos" />
 
+    <item
+        android:id="@+id/administradorGestionarAjustesFragment"
+        android:icon="@drawable/ic_settings"
+        android:title="Ajustes" />
+
 </menu>

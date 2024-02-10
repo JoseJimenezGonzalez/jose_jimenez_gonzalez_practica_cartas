@@ -44,4 +44,9 @@
         android:name="com.example.myapplication.administrador.fragments.AdministradorGestionarCartasModificarFragment"
         android:label="fragment_administrador_gestionar_cartas_modificar"
         tools:layout="@layout/fragment_administrador_gestionar_cartas_modificar" />
+    <fragment
+        android:id="@+id/administradorGestionarAjustesFragment"
+        android:name="com.example.myapplication.administrador.fragments.AdministradorGestionarAjustesFragment"
+        android:label="fragment_administrador_gestionar_ajustes"
+        tools:layout="@layout/fragment_administrador_gestionar_ajustes" />
 </navigation>

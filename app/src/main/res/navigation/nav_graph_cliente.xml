@@ -41,8 +41,8 @@
         android:label="fragment_cliente_gestionar_eventos"
         tools:layout="@layout/fragment_cliente_gestionar_eventos" />
     <fragment
-        android:id="@+id/clienteBuscarCartaFragment"
-        android:name="com.example.myapplication.cliente.fragments.ClienteBuscarCartaFragment"
-        android:label="fragment_cliente_buscar_carta"
-        tools:layout="@layout/fragment_cliente_buscar_carta" />
+        android:id="@+id/clienteGestionarAjustesFragment"
+        android:name="com.example.myapplication.cliente.fragments.ClienteGestionarAjustesFragment"
+        android:label="fragment_cliente_gestionar_ajustes"
+        tools:layout="@layout/fragment_cliente_gestionar_ajustes" />
 </navigation>

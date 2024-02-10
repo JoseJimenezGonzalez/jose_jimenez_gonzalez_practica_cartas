@@ -1,4 +1,4 @@
-package com.example.myapplication.cliente.fragments
+package com.example.myapplication.administrador.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,14 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.myapplication.R
 
-class ClienteBuscarCartaFragment : Fragment() {
+class AdministradorGestionarAjustesFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cliente_buscar_carta, container, false)
+        return inflater.inflate(R.layout.fragment_administrador_gestionar_ajustes, container, false)
     }
 
 }

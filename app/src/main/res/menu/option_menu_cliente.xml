@@ -5,11 +5,6 @@
         android:icon="@drawable/ic_home"
         android:title="Home" />
     <item
-        android:id="@+id/clienteBuscarCartaFragment"
-        android:icon="@drawable/ic_search"
-        android:title="Buscador" />
-
-    <item
         android:id="@+id/clienteGestionarCartasFragment"
         android:icon="@drawable/ic_cards"
         android:title="Comprar" />
@@ -17,4 +12,9 @@
         android:id="@+id/clienteGestionarEventosFragment"
         android:icon="@drawable/ic_events"
         android:title="Eventos" />
+
+    <item
+        android:id="@+id/clienteGestionarAjustesFragment"
+        android:icon="@drawable/ic_settings"
+        android:title="Ajustes" />
 </menu>
