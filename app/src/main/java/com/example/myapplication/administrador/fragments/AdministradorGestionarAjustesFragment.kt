@@ -32,7 +32,9 @@ class AdministradorGestionarAjustesFragment : Fragment(), CoroutineScope {
 
     private lateinit var auth: FirebaseAuth
 
-    lateinit var job: Job
+    private lateinit var job: Job
+
+    private val nombrePref = "mis_preferencias"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -80,7 +82,7 @@ class AdministradorGestionarAjustesFragment : Fragment(), CoroutineScope {
                     val response = apiService.obtenerDatos()
                     Log.e("respuesta", response.toString())
                     if (response.isSuccessful) {
-                        val dolar = response.body()!!.rates.get("USD")
+                        val dolar = response.body()!!.rates["USD"]
                         //Meto el dolar en el companion object
                         DivisaActual.dolar = dolar
                         Log.e("Dolares en ajustes", dolar.toString())

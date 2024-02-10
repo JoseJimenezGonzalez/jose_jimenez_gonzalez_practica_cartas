@@ -1,5 +1,6 @@
 package com.example.myapplication.cliente.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,8 @@ import com.example.myapplication.IniciarSesionActivity
 import com.example.myapplication.R
 import com.example.myapplication.data.model.ApiService
 import com.example.myapplication.data.model.DivisaActual
+import com.example.myapplication.data.model.Usuario
+import com.example.myapplication.data.model.UsuarioActual
 import com.example.myapplication.databinding.FragmentAdministradorGestionarAjustesBinding
 import com.example.myapplication.databinding.FragmentClienteGestionarAjustesBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -31,7 +34,9 @@ class ClienteGestionarAjustesFragment : Fragment(), CoroutineScope {
 
     private lateinit var auth: FirebaseAuth
 
-    lateinit var job: Job
+    private lateinit var job: Job
+
+    private var idUsuario = "usuario"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,9 +49,17 @@ class ClienteGestionarAjustesFragment : Fragment(), CoroutineScope {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if(UsuarioActual.usuarioActual != null){
+            val usuarioActual: Usuario = UsuarioActual.usuarioActual!!
+            idUsuario = usuarioActual.idUsuario
+        }
         //Codigo
+        val nombrePref = idUsuario
         job = Job()
         auth = FirebaseAuth.getInstance()
+        // Obtener una referencia a SharedPreferences
+        val sharedPreferences = requireContext().getSharedPreferences(nombrePref, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
         cerrarSesion()
         configurarBotonesDivisas()
 
@@ -79,7 +92,7 @@ class ClienteGestionarAjustesFragment : Fragment(), CoroutineScope {
                     val response = apiService.obtenerDatos()
                     Log.e("respuesta", response.toString())
                     if (response.isSuccessful) {
-                        val dolar = response.body()!!.rates.get("USD")
+                        val dolar = response.body()!!.rates["USD"]
                         //Meto el dolar en el companion object
                         DivisaActual.dolar = dolar
                         Log.e("Dolares en ajustes", dolar.toString())
