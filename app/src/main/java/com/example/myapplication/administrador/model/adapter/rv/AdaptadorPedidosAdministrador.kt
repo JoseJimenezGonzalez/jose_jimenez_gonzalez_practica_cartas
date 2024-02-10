@@ -1,6 +1,7 @@
 package com.example.myapplication.administrador.model.adapter.rv
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ import com.example.myapplication.data.model.UsuarioActual
 import com.google.firebase.database.FirebaseDatabase
 import android.widget.Filter
 import android.widget.Filterable
+import com.example.myapplication.data.model.DivisaActual
 
 class AdaptadorPedidosAdministrador(private val listaCartas: MutableList<ReservarCarta>, private val listener: OnClickListener): RecyclerView.Adapter<AdaptadorPedidosAdministrador.PedidoCartaViewHolder>(), Filterable {
     private lateinit var contexto: Context
@@ -27,6 +29,7 @@ class AdaptadorPedidosAdministrador(private val listaCartas: MutableList<Reserva
 
     var tipoUsuario = ""
     var idUsuario = ""
+    val equivalenciaDolares = DivisaActual.dolar
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -43,7 +46,14 @@ class AdaptadorPedidosAdministrador(private val listaCartas: MutableList<Reserva
 
         holder.nombreCarta.text = "Nombre : " + itemActual.nombreCarta
         holder.nombreExpansion.text = "Nombre de expansión: " + itemActual.nombreExpansion
-        holder.precio.text = "Precio: " + itemActual.precio.toString() + " euros"
+        Log.e("Dolares", equivalenciaDolares.toString())
+        if(equivalenciaDolares == 0.0){
+            holder.precio.text = "Precio: " + itemActual.precio.toString() + " euros"
+        }else{
+            val precioEnDolares = itemActual.precio * equivalenciaDolares!!
+            val precioFormateado = String.format("%.2f", precioEnDolares)
+            holder.precio.text = "Precio: $precioFormateado dolares"
+        }
         holder.colorCarta.text = "Color: " + itemActual.color
         holder.estadoCarta.text = "Estado preparación del pedido: " + itemActual.estado
         holder.idCarta.text = "Id de la carta: " + itemActual.idCarta

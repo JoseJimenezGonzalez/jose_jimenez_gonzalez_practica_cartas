@@ -21,6 +21,7 @@ import com.example.myapplication.R
 import com.example.myapplication.administrador.fragments.AdministradorGestionarCartasModificarFragment
 import com.example.myapplication.cliente.model.adapter.rv.OnClickListener
 import com.example.myapplication.data.model.Carta
+import com.example.myapplication.data.model.DivisaActual
 import com.example.myapplication.data.model.ReservarCarta
 import com.example.myapplication.data.model.Usuario
 import com.example.myapplication.data.model.UsuarioActual
@@ -37,6 +38,7 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, p
     private var listaFiltrada = listaCartas
     var tipoUsuario = ""
     var idUsuario = ""
+    val equivalenciaDolares = DivisaActual.dolar
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -53,7 +55,13 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, p
 
         holder.nombreCarta.text = "Nombre: " + itemActual.nombreCarta
         holder.nombreExpansion.text = "Nombre de la expansión: " + itemActual.nombreExpansion
-        holder.precio.text = "Precio : " + itemActual.precio.toString() + " euros"
+        if(equivalenciaDolares == 0.0){
+            holder.precio.text = "Precio : " + itemActual.precio.toString() + " euros"
+        }else{
+            val precioEnDolares = itemActual.precio * equivalenciaDolares!!
+            val precioFormateado = String.format("%.2f", precioEnDolares)
+            holder.precio.text = "Precio: $precioFormateado dolares"
+        }
         holder.stock.text = "Stock: " + itemActual.stock.toString()
         holder.disponibilidad.text = "Disponibilidad: " + itemActual.disponibilidad
         holder.colorCarta.text = "Color de la carta: " + itemActual.color

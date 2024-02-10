@@ -24,6 +24,7 @@ import com.example.myapplication.data.model.UsuarioActual
 import com.google.firebase.database.FirebaseDatabase
 import android.widget.Filter
 import android.widget.Filterable
+import com.example.myapplication.data.model.DivisaActual
 
 class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento>, private val navController: NavController, private val listener: OnClickListener): RecyclerView.Adapter<AdaptadorEventoAdministrador.EventoViewHolder>(), Filterable{
     private lateinit var contexto: Context
@@ -31,6 +32,7 @@ class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento
 
     private var tipoUsuario = ""
     private var idUsuario = ""
+    val equivalenciaDolares = DivisaActual.dolar
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -54,7 +56,13 @@ class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento
 
         holder.nombreEvento.text = "Nombre del torneo: " + itemActual.nombre
         holder.formatoEvento.text = "Formato del torneo: " + itemActual.formato
-        holder.precio.text = "Precio: " + itemActual.precio.toString() + " euros"
+        if(equivalenciaDolares == 0.0){
+            holder.precio.text = "Precio: " + itemActual.precio.toString() + " euros"
+        }else{
+            val precioEnDolares = itemActual.precio * equivalenciaDolares!!
+            val precioFormateado = String.format("%.2f", precioEnDolares)
+            holder.precio.text = "Precio: $precioFormateado dolares"
+        }
         holder.fechaEvento.text = "Fecha del evento: " + itemActual.fecha
         holder.aforoMaximo.text = "Aforo maximo del torneo: " + itemActual.aforo.toString() + " plazas"
         holder.aforoOcupado.text = "Aforo ocupado: " + itemActual.aforoOcupado.toString() + " plazas"

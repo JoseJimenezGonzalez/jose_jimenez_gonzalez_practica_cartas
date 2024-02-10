@@ -36,7 +36,7 @@ class AdministradorGestionarVentasProcesadosFragment : Fragment(), OnClickListen
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAdministradorGestionarVentasProcesadosBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -59,7 +59,7 @@ class AdministradorGestionarVentasProcesadosFragment : Fragment(), OnClickListen
                 snapshot.children.forEach{ reserva ->
                     val pojoReserva = reserva?.getValue(ReservarCarta::class.java)
                     if(pojoReserva!!.estado == "preparado"){
-                        lista.add(pojoReserva!!)
+                        lista.add(pojoReserva)
                     }
                 }
                 recycler.adapter?.notifyDataSetChanged()

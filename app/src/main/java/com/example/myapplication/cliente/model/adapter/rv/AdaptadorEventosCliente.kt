@@ -14,11 +14,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.example.myapplication.R
+import com.example.myapplication.data.model.DivisaActual
 import com.example.myapplication.data.model.ReservarEvento
 
 class AdaptadorEventosCliente (private val listaEventosUsuario: MutableList<ReservarEvento>): RecyclerView.Adapter<AdaptadorEventosCliente.ReservarEventoViewHolder>(), Filterable {
     private lateinit var contexto: Context
     private var listaFiltrada = listaEventosUsuario
+    val equivalenciaDolares = DivisaActual.dolar
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -35,7 +37,13 @@ class AdaptadorEventosCliente (private val listaEventosUsuario: MutableList<Rese
 
         holder.nombreEvento.text = "Nombre del torneo: " + itemActual.nombre
         holder.formatoEvento.text = "Formato del torneo: " + itemActual.formato
-        holder.precio.text = "Precio del torneo: " + itemActual.precio.toString() + " euros"
+        if(equivalenciaDolares == 0.0){
+            holder.precio.text = "Precio del torneo: " + itemActual.precio.toString() + " euros"
+        }else{
+            val precioEnDolares = itemActual.precio * equivalenciaDolares!!
+            val precioFormateado = String.format("%.2f", precioEnDolares)
+            holder.precio.text = "Precio: $precioFormateado dolares"
+        }
         holder.fechaEvento.text = "Fecha del evento: " + itemActual.fecha
         holder.aforoMaximo.text = "Aforo maximo del torneo: " + itemActual.aforo.toString()
         holder.aforoOcupado.text = "Aforo ocupado del torneo: " + itemActual.aforoOcupado.toString()

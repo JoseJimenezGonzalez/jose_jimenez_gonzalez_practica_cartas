@@ -67,6 +67,9 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation("org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.9.22")
 
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
     //Los desgraciados le han metido un pila al navigation y falla cuando se navega
     //Mantener en la version 2.3.5
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
