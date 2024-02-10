@@ -4,8 +4,15 @@
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">#080F33</item>
         <item name="colorSecondary">#FFFFFF</item>
+
+        <!-- Agregar el estilo personalizado para el BottomNavigationView -->
+        <item name="bottomNavigationStyle">@style/AppTheme.BottomNavigationView</item>
+    </style>
+
+    <!-- Define el estilo personalizado para el BottomNavigationView -->
+    <style name="AppTheme.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:background">@null</item>
     </style>
 
     <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
-
 </resources>

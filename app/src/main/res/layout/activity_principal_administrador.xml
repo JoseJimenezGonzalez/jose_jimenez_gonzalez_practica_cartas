@@ -27,9 +27,9 @@
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/option_menu_administrador"
         app:backgroundTint = "#080F33"
-        app:itemRippleColor="#4452A1"
-        app:labelVisibilityMode="selected"
-        app:itemTextColor="@color/white"
-        app:itemIconTint="@color/white"/>
+        app:itemBackground="@null"
+        app:labelVisibilityMode="labeled"
+        app:itemTextColor="@color/navigation_bottom_bar"
+        app:itemIconTint="@color/navigation_bottom_bar"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
