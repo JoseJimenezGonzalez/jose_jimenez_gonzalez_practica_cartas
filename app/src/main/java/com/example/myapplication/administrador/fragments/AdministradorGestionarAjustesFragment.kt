@@ -1,12 +1,14 @@
 package com.example.myapplication.administrador.fragments
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.myapplication.IniciarSesionActivity
 import com.example.myapplication.R
 import com.example.myapplication.data.model.ApiService
@@ -52,6 +54,7 @@ class AdministradorGestionarAjustesFragment : Fragment(), CoroutineScope {
         auth = FirebaseAuth.getInstance()
         cerrarSesion()
         configurarBotonesDivisas()
+        configurarBotonesCambioTema()
 
     }
 
@@ -100,6 +103,28 @@ class AdministradorGestionarAjustesFragment : Fragment(), CoroutineScope {
         binding.btnEuro.setOnClickListener {
             binding.tbDivisas.check(R.id.btnEuro)
             DivisaActual.dolar = 0.0
+        }
+    }
+
+    private fun toggleTheme() {
+        val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        when (currentNightMode) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+            Configuration.UI_MODE_NIGHT_YES -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+            else -> {
+                // El modo de noche no está configurado, usa el modo de noche como predeterminado
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+        }
+    }
+
+    private fun configurarBotonesCambioTema() {
+        binding.btnModoNoche.setOnClickListener {
+            toggleTheme()
         }
     }
 
