@@ -125,10 +125,10 @@ class PrincipalAdministradorActivity : AppCompatActivity() {
             PendingIntent.getActivity(this, 0, actividad, PendingIntent.FLAG_IMMUTABLE)
 
         val notificacion = NotificationCompat.Builder(this, id)
-            .setSmallIcon(android.R.drawable.stat_notify_sync)
+            .setSmallIcon(R.drawable.ic_cart_shopping)
             .setContentTitle(titulo)
             .setContentText(contenido)
-            .setSubText("sistema de informacion")
+            .setSubText("Sistema de notificación")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
