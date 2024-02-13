@@ -2,6 +2,7 @@ package com.example.myapplication.administrador.model.adapter.rv
 
 import android.content.Context
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,7 @@ import com.example.myapplication.administrador.fragments.AdministradorGestionarC
 import com.example.myapplication.cliente.model.adapter.rv.OnClickListener
 import com.example.myapplication.data.model.Carta
 import com.example.myapplication.data.model.DivisaActual
+import com.example.myapplication.data.model.Estado
 import com.example.myapplication.data.model.ReservarCarta
 import com.example.myapplication.data.model.Usuario
 import com.example.myapplication.data.model.UsuarioActual
@@ -118,7 +120,9 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, p
                 //Obtenemos la fecha actual
                 val fechaActualSinFormatear = Date()
                 val fechaActualFormateada = obtenerFormateada(fechaActualSinFormatear)
-                Log.e("Fecha", fechaActualFormateada)
+                //Sacamos el id de la notificacion y el estado de la notificacion
+                val androidId = Settings.Secure.getString(contexto.contentResolver, Settings.Secure.ANDROID_ID)
+                val estadoNotificacion = Estado.COMPRADO
                 //La añadimos a preparacion
                 dbRef.child("tienda").child("reservas_carta").child(idReservaCarta!!).setValue(
                     ReservarCarta(
@@ -131,7 +135,9 @@ class AdaptadorCartaAdministrador(private val listaCartas: MutableList<Carta>, p
                         idReservaCarta,
                         idUsuario,
                         estadoPedido,
-                        fechaActualFormateada
+                        fechaActualFormateada,
+                        estadoNotificacion,
+                        androidId
                     )
                 )
                 //Le quitamos 1 de stock
