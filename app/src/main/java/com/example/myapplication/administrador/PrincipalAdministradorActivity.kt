@@ -57,7 +57,6 @@ class PrincipalAdministradorActivity : AppCompatActivity() {
 
         crearCanalNotificaciones()
         androidId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
-        dbRef = FirebaseDatabase.getInstance().reference
         generador = AtomicInteger(0)
 
 
@@ -77,11 +76,11 @@ class PrincipalAdministradorActivity : AppCompatActivity() {
                 }
 
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                    //
+
                 }
 
                 override fun onChildRemoved(snapshot: DataSnapshot) {
-                    //
+
 
                 }
 
