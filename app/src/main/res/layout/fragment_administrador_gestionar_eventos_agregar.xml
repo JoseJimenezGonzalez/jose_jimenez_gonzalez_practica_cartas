@@ -39,12 +39,14 @@
         android:paddingRight="14dp"
         app:boxStrokeColor="#4452A1"
         android:textColorHint="@color/black"
+        app:boxBackgroundColor="@color/white"
         android:hint="Nombre">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietNombreEvento"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -61,12 +63,14 @@
         android:paddingRight="14dp"
         app:boxStrokeColor="#4452A1"
         android:textColorHint="@color/black"
+        app:boxBackgroundColor="@color/white"
         android:hint="Formato del torneo">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietFormatoTorneo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -83,6 +87,7 @@
         android:paddingRight="14dp"
         app:boxStrokeColor="#4452A1"
         android:textColorHint="@color/black"
+        app:boxBackgroundColor="@color/white"
         android:hint="Fecha del evento">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -90,7 +95,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="date"
-            android:focusable="false"/>
+            android:focusable="false"
+            android:textColor="@color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -107,12 +113,14 @@
         android:paddingRight="14dp"
         app:boxStrokeColor="#4452A1"
         android:textColorHint="@color/black"
+        app:boxBackgroundColor="@color/white"
         android:hint="Precio del evento">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietPrecioEvento"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -129,12 +137,14 @@
         android:paddingRight="14dp"
         app:boxStrokeColor="#4452A1"
         android:textColorHint="@color/black"
+        app:boxBackgroundColor="@color/white"
         android:hint="Aforo del evento">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietAforoEvento"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton

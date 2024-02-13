@@ -55,7 +55,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tilNombre"
         app:layout_constraintBottom_toTopOf="@id/lyPrecioStock"
-        app:boxStrokeColor="#080F33"
+        app:boxStrokeColor="#4452A1"
+        android:textColorHint="@color/black"
         app:boxBackgroundColor="@color/white"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
@@ -69,6 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none"
+            android:textColor="@color/black"
             app:simpleItems="@array/colecciones_cartas"
             />
     </com.google.android.material.textfield.TextInputLayout>
@@ -88,7 +90,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:errorEnabled="true"
-            app:boxStrokeColor="#080F33"
+            app:boxStrokeColor="#4452A1"
+            android:textColorHint="@color/black"
             app:boxBackgroundColor="@color/white"
             app:boxStrokeWidth="2dp"
             android:paddingLeft="14dp"
@@ -99,7 +102,8 @@
                 android:id="@+id/tietPrecio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberDecimal"
+                android:textColor="@color/black"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -107,7 +111,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:boxStrokeColor="#080F33"
+            app:boxStrokeColor="#4452A1"
+            android:textColorHint="@color/black"
             app:boxBackgroundColor="@color/white"
             app:errorEnabled="true"
             app:boxStrokeWidth="2dp"
@@ -119,7 +124,8 @@
                 android:id="@+id/tietStock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType=""/>
+                android:inputType="number"
+                android:textColor="@color/black"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -145,7 +151,8 @@
             app:boxStrokeWidth="2dp"
             android:paddingLeft="14dp"
             android:paddingRight="14dp"
-            app:boxStrokeColor="#080F33"
+            app:boxStrokeColor="#4452A1"
+            android:textColorHint="@color/black"
             app:boxBackgroundColor="@color/white"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:hint="Disponible">
@@ -156,6 +163,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="none"
                 app:simpleItems="@array/disponibilidad_cartas"
+                android:textColor="@color/black"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -169,7 +177,8 @@
             app:boxStrokeWidth="2dp"
             android:paddingLeft="14dp"
             android:paddingRight="14dp"
-            app:boxStrokeColor="#080F33"
+            app:boxStrokeColor="#4452A1"
+            android:textColorHint="@color/black"
             app:boxBackgroundColor="@color/white"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:hint="Color">
@@ -180,6 +189,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="none"
                 app:simpleItems="@array/color_cartas"
+                android:textColor="@color/black"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>

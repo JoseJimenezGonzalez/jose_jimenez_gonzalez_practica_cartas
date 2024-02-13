@@ -27,7 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Nombre del evento">
+            android:text="Nombre del evento"
+            android:textColor="@color/black">
         </TextView>
 
         <TextView
@@ -35,7 +36,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Formato del evento">
+            android:text="Formato del evento"
+            android:textColor="@color/black">
         </TextView>
 
         <TextView
@@ -43,7 +45,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Fecha del evento">
+            android:text="Fecha del evento"
+            android:textColor="@color/black">
         </TextView>
 
         <TextView
@@ -51,7 +54,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Precio">
+            android:text="Precio"
+            android:textColor="@color/black">
         </TextView>
 
         <TextView
@@ -59,7 +63,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Aforo maximo">
+            android:text="Aforo maximo"
+            android:textColor="@color/black">
         </TextView>
 
         <TextView
@@ -68,7 +73,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:text="Aforo ocupado">
+            android:text="Aforo ocupado"
+            android:textColor="@color/black">
         </TextView>
 
         <androidx.appcompat.widget.AppCompatButton

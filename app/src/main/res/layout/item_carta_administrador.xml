@@ -27,7 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Nombre de la carta">
+            android:text="Nombre de la carta"
+            android:textColor="@color/black">
         </TextView>
 
         <TextView
@@ -35,7 +36,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Nombre de la edicion">
+            android:text="Nombre de la edicion"
+            android:textColor="@color/black">
         </TextView>
 
         <TextView
@@ -43,7 +45,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Precio de la carta">
+            android:text="Precio de la carta"
+            android:textColor="@color/black">
         </TextView>
 
         <TextView
@@ -51,7 +54,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Stock">
+            android:text="Stock"
+            android:textColor="@color/black">
         </TextView>
 
         <TextView
@@ -59,7 +63,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Disponibilidad">
+            android:text="Disponibilidad"
+            android:textColor="@color/black">
         </TextView>
 
         <TextView
@@ -68,7 +73,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:text="Color de la carta">
+            android:text="Color de la carta"
+            android:textColor="@color/black">
         </TextView>
 
         <androidx.appcompat.widget.AppCompatButton

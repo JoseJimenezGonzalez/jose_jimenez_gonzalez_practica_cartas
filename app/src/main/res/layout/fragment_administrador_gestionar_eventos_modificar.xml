@@ -31,15 +31,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cvImagen"
         app:layout_constraintBottom_toTopOf="@id/tilFormatoTorneo"
-        app:boxStrokeColor="@android:color/darker_gray"
+        app:boxStrokeColor="#4452A1"
+        android:textColorHint="@color/black"
+        app:boxBackgroundColor="@color/white"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
         android:hint="Nombre">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietNombreEvento"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -50,15 +55,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tilNombreEvento"
         app:layout_constraintBottom_toTopOf="@id/tilFechaEvento"
-        app:boxStrokeColor="@android:color/darker_gray"
+        app:boxStrokeColor="#4452A1"
+        android:textColorHint="@color/black"
+        app:boxBackgroundColor="@color/white"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
         android:hint="Formato del torneo">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietFormatoTorneo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -69,9 +79,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tilPrecioEvento"
         app:layout_constraintTop_toBottomOf="@id/tilFormatoTorneo"
-        app:boxStrokeColor="@android:color/darker_gray"
+        app:boxStrokeColor="#4452A1"
+        android:textColorHint="@color/black"
+        app:boxBackgroundColor="@color/white"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
         android:hint="Fecha del evento">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -79,7 +93,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="date"
-            android:focusable="false"/>
+            android:focusable="false"
+            android:textColor="@color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -90,15 +105,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/lyAforoAforo"
         app:layout_constraintTop_toBottomOf="@id/tilFechaEvento"
-        app:boxStrokeColor="@android:color/darker_gray"
+        app:boxStrokeColor="#4452A1"
+        android:textColorHint="@color/black"
+        app:boxBackgroundColor="@color/white"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
         android:hint="Precio del evento">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietPrecioEvento"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -114,15 +134,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:boxStrokeColor="@android:color/darker_gray"
+            app:boxStrokeColor="#4452A1"
+            android:textColorHint="@color/black"
+            app:boxBackgroundColor="@color/white"
             app:errorEnabled="true"
             app:boxStrokeWidth="2dp"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
             android:hint="Aforo del evento">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tietAforoEvento"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -130,15 +155,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:boxStrokeColor="@android:color/darker_gray"
+            app:boxStrokeColor="#4452A1"
+            android:textColorHint="@color/black"
+            app:boxBackgroundColor="@color/white"
             app:errorEnabled="true"
             app:boxStrokeWidth="2dp"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
             android:hint="Aforo ocupado">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tietAforoEventoOcupado"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"/>
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -152,7 +182,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lyAforoAforo">
+        app:layout_constraintTop_toBottomOf="@id/lyAforoAforo"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:background="#4452A1"
+        android:textColor="@color/white">
     </androidx.appcompat.widget.AppCompatButton>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

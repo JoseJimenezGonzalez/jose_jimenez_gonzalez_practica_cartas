@@ -31,7 +31,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cvImagen"
         app:layout_constraintBottom_toTopOf="@id/dmNombreExpansion"
-        app:boxStrokeColor="@android:color/darker_gray"
+        app:boxStrokeColor="#4452A1"
+        android:textColorHint="@color/black"
+        app:boxBackgroundColor="@color/white"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
         android:paddingLeft="14dp"
@@ -41,7 +43,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tietNombre"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -52,6 +55,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tilNombre"
         app:layout_constraintBottom_toTopOf="@id/lyPrecioStock"
+        app:boxStrokeColor="#4452A1"
+        android:textColorHint="@color/black"
+        app:boxBackgroundColor="@color/white"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
         android:paddingLeft="14dp"
@@ -65,6 +71,7 @@
             android:layout_height="wrap_content"
             android:inputType="none"
             app:simpleItems="@array/colecciones_cartas"
+            android:textColor="@color/black"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,18 +89,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:boxStrokeColor="@android:color/darker_gray"
             app:errorEnabled="true"
             app:boxStrokeWidth="2dp"
             android:paddingLeft="14dp"
             android:paddingRight="14dp"
+            app:boxStrokeColor="#4452A1"
+            android:textColorHint="@color/black"
+            app:boxBackgroundColor="@color/white"
             android:hint="Precio">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tietPrecio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberDecimal"
+                android:textColor="@color/black"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -101,7 +111,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:boxStrokeColor="@android:color/darker_gray"
+            app:boxStrokeColor="#4452A1"
+            android:textColorHint="@color/black"
+            app:boxBackgroundColor="@color/white"
             app:errorEnabled="true"
             app:boxStrokeWidth="2dp"
             android:paddingLeft="14dp"
@@ -112,7 +124,8 @@
                 android:id="@+id/tietStock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType=""/>
+                android:inputType="number"
+                android:textColor="@color/black"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -139,6 +152,9 @@
             app:boxStrokeWidth="2dp"
             android:paddingLeft="14dp"
             android:paddingRight="14dp"
+            app:boxStrokeColor="#4452A1"
+            android:textColorHint="@color/black"
+            app:boxBackgroundColor="@color/white"
             android:hint="Disponible">
 
             <AutoCompleteTextView
@@ -147,6 +163,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="none"
                 app:simpleItems="@array/disponibilidad_cartas"
+                android:textColor="@color/black"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -161,6 +178,9 @@
             app:boxStrokeWidth="2dp"
             android:paddingLeft="14dp"
             android:paddingRight="14dp"
+            app:boxStrokeColor="#4452A1"
+            android:textColorHint="@color/black"
+            app:boxBackgroundColor="@color/white"
             android:hint="Color">
 
             <AutoCompleteTextView
@@ -169,6 +189,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="none"
                 app:simpleItems="@array/color_cartas"
+                android:textColor="@color/black"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
