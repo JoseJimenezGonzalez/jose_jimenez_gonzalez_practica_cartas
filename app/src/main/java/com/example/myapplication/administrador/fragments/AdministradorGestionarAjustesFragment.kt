@@ -1,6 +1,8 @@
 package com.example.myapplication.administrador.fragments
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
@@ -36,6 +38,10 @@ class AdministradorGestionarAjustesFragment : Fragment(), CoroutineScope {
 
     private lateinit var job: Job
 
+    private lateinit var sharedPreferences: SharedPreferences
+
+    lateinit var editor: SharedPreferences.Editor
+
     private val nombrePref = "mis_preferencias"
 
     override fun onCreateView(
@@ -52,6 +58,10 @@ class AdministradorGestionarAjustesFragment : Fragment(), CoroutineScope {
         //Codigo
         job = Job()
         auth = FirebaseAuth.getInstance()
+
+        sharedPreferences = requireContext().getSharedPreferences(nombrePref, Context.MODE_PRIVATE)
+        editor = sharedPreferences.edit()
+
         cerrarSesion()
         configurarBotonesDivisas()
         configurarBotonesCambioTema()
@@ -125,8 +135,18 @@ class AdministradorGestionarAjustesFragment : Fragment(), CoroutineScope {
     private fun configurarBotonesCambioTema() {
         binding.btnModoNoche.setOnClickListener {
             toggleTheme()
+            val editor = sharedPreferences.edit()
+            editor.putBoolean("modo_dia", false) // Cambiar a false cuando se selecciona el modo noche
+            editor.apply()
+        }
+        binding.btnModoDia.setOnClickListener {
+            toggleTheme()
+            val editor = sharedPreferences.edit()
+            editor.putBoolean("modo_dia", true) // Cambiar a true cuando se selecciona el modo día
+            editor.apply()
         }
     }
+
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.IO + job

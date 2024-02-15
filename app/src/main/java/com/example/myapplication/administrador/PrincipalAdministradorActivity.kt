@@ -12,6 +12,7 @@ import android.os.Parcelable
 import android.provider.Settings
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.NotificationCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -52,6 +53,19 @@ class PrincipalAdministradorActivity : AppCompatActivity() {
 
         binding = ActivityPrincipalAdministradorBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //tema
+        // Obtener el estado del modo día/noche almacenado en SharedPreferences
+        val sharedPreferences = getSharedPreferences("mis_preferencias", Context.MODE_PRIVATE)
+        val modoDia = sharedPreferences.getBoolean("modo_dia", true)
+
+        // Aplicar el tema según el estado almacenado en SharedPreferences
+        if (modoDia) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        } else {
+
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
 
         initUI()
 

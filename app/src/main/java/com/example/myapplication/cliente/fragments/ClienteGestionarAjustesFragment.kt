@@ -2,12 +2,15 @@ package com.example.myapplication.cliente.fragments
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.myapplication.IniciarSesionActivity
 import com.example.myapplication.R
 import com.example.myapplication.data.model.ApiService
@@ -36,6 +39,10 @@ class ClienteGestionarAjustesFragment : Fragment(), CoroutineScope {
 
     private lateinit var job: Job
 
+    private lateinit var sharedPreferences: SharedPreferences
+
+    lateinit var editor: SharedPreferences.Editor
+
     private var idUsuario = "usuario"
 
     override fun onCreateView(
@@ -58,10 +65,13 @@ class ClienteGestionarAjustesFragment : Fragment(), CoroutineScope {
         job = Job()
         auth = FirebaseAuth.getInstance()
         // Obtener una referencia a SharedPreferences
-        val sharedPreferences = requireContext().getSharedPreferences(nombrePref, Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
+        sharedPreferences = requireContext().getSharedPreferences(nombrePref, Context.MODE_PRIVATE)
+        editor = sharedPreferences.edit()
+
+
         cerrarSesion()
         configurarBotonesDivisas()
+        configurarBotonesCambioTema()
 
     }
 
@@ -110,6 +120,40 @@ class ClienteGestionarAjustesFragment : Fragment(), CoroutineScope {
         binding.btnEuro.setOnClickListener {
             binding.tbDivisas.check(R.id.btnEuro)
             DivisaActual.dolar = 0.0
+        }
+    }
+
+    private fun toggleTheme() {
+        val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        when (currentNightMode) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+            Configuration.UI_MODE_NIGHT_YES -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+            else -> {
+                // El modo de noche no está configurado, usa el modo de noche como predeterminado
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+        }
+    }
+
+    private fun configurarBotonesCambioTema() {
+        binding.btnModoNoche.setOnClickListener {
+            toggleTheme()
+            val editor = sharedPreferences.edit()
+            editor.putBoolean("modo_dia", false)
+            editor.putBoolean("boton_dia", false)
+            editor.apply()
+
+        }
+        binding.btnModoDia.setOnClickListener {
+            toggleTheme()
+            val editor = sharedPreferences.edit()
+            editor.putBoolean("modo_dia", true)
+            editor.putBoolean("boton_dia", true)
+            editor.apply()
         }
     }
 
