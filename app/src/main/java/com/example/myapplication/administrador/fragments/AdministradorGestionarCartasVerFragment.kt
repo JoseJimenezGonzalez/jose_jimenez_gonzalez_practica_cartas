@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,7 +50,14 @@ class AdministradorGestionarCartasVerFragment : Fragment(), OnClickListener {
         configurarRecyclerView()
         configurarSearchView()
         configurarMenuPopup()
+        configurarBotonFab()
 
+    }
+
+    private fun configurarBotonFab() {
+        binding.fab.setOnClickListener {
+            Toast.makeText(context, "Si pulsas sobre la carta la editas", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun configurarRecyclerView() {

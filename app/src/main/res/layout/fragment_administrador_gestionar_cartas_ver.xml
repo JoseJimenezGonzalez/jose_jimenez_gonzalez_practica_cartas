@@ -35,4 +35,14 @@
         tools:listitem="@layout/item_carta_administrador">
     </androidx.recyclerview.widget.RecyclerView>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp"
+        android:background="@color/black"
+        app:srcCompat="@drawable/ic_info" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
