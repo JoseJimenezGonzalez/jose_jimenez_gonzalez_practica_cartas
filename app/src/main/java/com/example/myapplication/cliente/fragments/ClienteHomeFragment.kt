@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.myapplication.data.model.Usuario
+import com.example.myapplication.data.model.UsuarioActual
 import com.example.myapplication.databinding.FragmentClienteHomeBinding
 
 class ClienteHomeFragment : Fragment() {
@@ -24,6 +26,15 @@ class ClienteHomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //Codigo
+
+        //Codigo
+        var nombreUsuario: String = ""
+        //Obtenemos el usuario
+        if(UsuarioActual.usuarioActual != null){
+            val usuarioActual: Usuario = UsuarioActual.usuarioActual!!
+            nombreUsuario = usuarioActual.nombreUsuario
+        }
+        binding.tvNombreUsuario.text = nombreUsuario
 
     }
 }
