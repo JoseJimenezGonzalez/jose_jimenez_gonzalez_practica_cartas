@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_negro"
+        android:title="Negro" />
+    <item
+        android:id="@+id/action_rojo"
+        android:title="Rojo" />
+    <item
+        android:id="@+id/action_blanco"
+        android:title="Blanco" />
+    <item
+        android:id="@+id/action_verde"
+        android:title="Verde" />
+    <item
+        android:id="@+id/action_azul"
+        android:title="Azul" />
+    <item
+        android:id="@+id/action_multicolor"
+        android:title="Multicolor" />
+    <item
+        android:id="@+id/action_artefacto"
+        android:title="Artefacto" />
+</menu>

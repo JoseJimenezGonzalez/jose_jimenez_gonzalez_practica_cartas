@@ -144,6 +144,76 @@ class ClienteComprarCartasFragment : Fragment(), OnClickListener {
                     true
                 }
 
+                R.id.action_filtrar_color ->{
+                    // Crear instancia de PopupMenu para el filtrado por color
+                    val filtrarColorPopupMenu = android.widget.PopupMenu(context, view)
+                    filtrarColorPopupMenu.menuInflater.inflate(R.menu.popup_menu_filtrar_color, filtrarColorPopupMenu.menu)
+                    // Establecer un listener para manejar clics en las opciones del menú de filtrado por color
+                    filtrarColorPopupMenu.setOnMenuItemClickListener { filtrarColorMenuItem: MenuItem ->
+                        // Aquí maneja la lógica para las opciones de filtrado por color según el item seleccionado
+                        when (filtrarColorMenuItem.itemId) {
+
+                            R.id.action_negro -> {
+                                lista.retainAll { carta ->
+                                    carta.color == "Negro"
+                                }
+                                adaptador.notifyDataSetChanged()
+                                true
+                            }
+                            R.id.action_blanco -> {
+                                lista.retainAll { carta ->
+                                    carta.color == "Blanco"
+                                }
+                                adaptador.notifyDataSetChanged()
+                                true
+                            }
+
+                            R.id.action_rojo -> {
+                                lista.retainAll { carta ->
+                                    carta.color == "Rojo"
+                                }
+                                adaptador.notifyDataSetChanged()
+                                true
+                            }
+
+                            R.id.action_verde -> {
+                                lista.retainAll { carta ->
+                                    carta.color == "Verde"
+                                }
+                                adaptador.notifyDataSetChanged()
+                                true
+                            }
+
+                            R.id.action_azul -> {
+                                lista.retainAll { carta ->
+                                    carta.color == "Azul"
+                                }
+                                adaptador.notifyDataSetChanged()
+                                true
+                            }
+
+                            R.id.action_artefacto -> {
+                                lista.retainAll { carta ->
+                                    carta.color == "Incoloro"
+                                }
+                                adaptador.notifyDataSetChanged()
+                                true
+                            }
+
+                            R.id.action_multicolor -> {
+                                lista.retainAll { carta ->
+                                    carta.color == "Multicolor"
+                                }
+                                adaptador.notifyDataSetChanged()
+                                true
+                            }
+                            else -> false
+                        }
+                    }
+                    filtrarColorPopupMenu.show()
+                    true
+                }
+
                 R.id.action_sort_stock -> {
                     // Lógica para la opción "ordenar por stock"
                     lista.sortByDescending { venta ->

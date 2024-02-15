@@ -11,5 +11,8 @@
         android:title="Por fecha de compra" />
     <item
         android:id="@+id/action_sort_color"
-        android:title="Por color" />
+        android:title="Agrupar por colores" />
+    <item
+        android:id="@+id/action_filtrar_color"
+        android:title="Filtrar por color" />
 </menu>
