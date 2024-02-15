@@ -105,7 +105,6 @@ class AdministradorGestionarCartasModificarFragment : Fragment(), CoroutineScope
             val disponibilidad = binding.tetDisponible.text.toString().trim()
             val color = binding.tetColor.text.toString().trim()
             //Booleanos
-            var esFotoCorrecta = false
             var esNombreCorrecto = false
             var esEdicionCorrecta = false
             var esPrecioCorrecto = false
@@ -157,25 +156,19 @@ class AdministradorGestionarCartasModificarFragment : Fragment(), CoroutineScope
                 binding.dmColor.error = "Insertar color"
             }
 
-            if(urlImagen == null){
-                Toast.makeText(context, "Falta la seleccionar la imagen", Toast.LENGTH_SHORT).show()
-            }else{
-                esFotoCorrecta = true
-            }
-
             if(existeCarta(listaCartas, nombreCarta) && nombreCarta != pojoCarta.nombreCarta){
                 Toast.makeText(context, "Ya existe esa carta", Toast.LENGTH_SHORT).show()
                 existeCarta = true
             }
 
-            if (esNombreCorrecto && esColorCorrecto && esPrecioCorrecto && esStockCorrecto && esDisponibilidadCorrecta && !existeCarta && esFotoCorrecta && esEdicionCorrecta){
+            if (esNombreCorrecto && esColorCorrecto && esPrecioCorrecto && esStockCorrecto && esDisponibilidadCorrecta && !existeCarta && esEdicionCorrecta){
                 val idCarta = pojoCarta.idCarta
                 var urlCoverFirebase = String()
                 launch {
                     urlCoverFirebase = if(urlImagen == null){
                         pojoCarta.urlImagenCarta
                     }else{
-                        guardarImagenCover(stoRef, pojoCarta.idCarta, urlImagen!!)
+                        guardarImagenCover(stoRef, pojoCarta.idCarta!!, urlImagen!!)
                     }
                     dbRef.child("tienda").child("cartas").child(idCarta).setValue(
                         Carta(
