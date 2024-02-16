@@ -16,5 +16,5 @@ data class ReservarCarta(
     val estado: String = "",
     val fecha: String = "",
     val estadoNotificacion: Int = 0,
-    val idNotificacion: String = ""
+    val idNotificacion: String = "",
 ) : Parcelable

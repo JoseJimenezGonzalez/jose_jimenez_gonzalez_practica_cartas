@@ -54,7 +54,7 @@ class ClienteVerCartasFragment : Fragment(), OnClickListener {
         //Codigo
         if(UsuarioActual.usuarioActual != null){
             val usuarioActual: Usuario = UsuarioActual.usuarioActual!!
-            idUsuario = usuarioActual.tipoDeUsuario
+            idUsuario = usuarioActual.idUsuario
         }
 
         configurarRecyclerView()
