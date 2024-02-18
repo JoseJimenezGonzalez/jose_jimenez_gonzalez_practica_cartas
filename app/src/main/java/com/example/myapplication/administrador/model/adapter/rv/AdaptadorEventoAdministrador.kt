@@ -87,7 +87,7 @@ class AdaptadorEventoAdministrador (private val listaEventos: MutableList<Evento
                 val fragment = AdministradorGestionarEventosModificarFragment()
                 fragment.arguments = bundle
                 //Cambiar la direccion
-                navController.navigate(R.id.action_administradorGestionarCartasFragment_to_administradorGestionarCartasModificarFragment, bundle)
+                navController.navigate(R.id.administradorGestionarEventosModificarFragment, bundle)
             }
         }else{
             holder.boton.setOnClickListener {

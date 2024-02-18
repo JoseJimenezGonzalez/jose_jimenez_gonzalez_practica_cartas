@@ -49,4 +49,23 @@
         android:name="com.example.myapplication.administrador.fragments.AdministradorGestionarAjustesFragment"
         android:label="fragment_administrador_gestionar_ajustes"
         tools:layout="@layout/fragment_administrador_gestionar_ajustes" />
+    <fragment
+        android:id="@+id/administradorGestionarEventosAgregarFragment"
+        android:name="com.example.myapplication.administrador.fragments.AdministradorGestionarEventosAgregarFragment"
+        android:label="fragment_administrador_gestionar_eventos_agregar"
+        tools:layout="@layout/fragment_administrador_gestionar_eventos_agregar" />
+    <fragment
+        android:id="@+id/administradorGestionarEventosModificarFragment"
+        android:name="com.example.myapplication.administrador.fragments.AdministradorGestionarEventosModificarFragment"
+        android:label="fragment_administrador_gestionar_eventos_modificar"
+        tools:layout="@layout/fragment_administrador_gestionar_eventos_modificar" />
+    <fragment
+        android:id="@+id/administradorGestionarEventosVerFragment"
+        android:name="com.example.myapplication.administrador.fragments.AdministradorGestionarEventosVerFragment"
+        android:label="fragment_administrador_gestionar_eventos_ver"
+        tools:layout="@layout/fragment_administrador_gestionar_eventos_ver" >
+        <action
+            android:id="@+id/action_administradorGestionarEventosVerFragment_to_administradorGestionarEventosModificarFragment"
+            app:destination="@id/administradorGestionarEventosModificarFragment" />
+    </fragment>
 </navigation>

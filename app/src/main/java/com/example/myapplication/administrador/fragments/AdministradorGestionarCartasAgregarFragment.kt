@@ -169,6 +169,7 @@ class AdministradorGestionarCartasAgregarFragment() : Fragment(), CoroutineScope
             if (esNombreCorrecto && esColorCorrecto && esPrecioCorrecto && esStockCorrecto && esDisponibilidadCorrecta && !existeCarta && esFotoCorrecta && esEdicionCorrecta){
                 val idCarta = dbRef.child("tienda").child("cartas").push().key
                 registrarCartaEnBaseDatos(idCarta, nombreCarta, nombreExpansion, precio.toDouble(), stock.toInt(), disponibilidad, color)
+                Toast.makeText(context, "Se ha introducido la carta en la base de datos", Toast.LENGTH_SHORT).show()
             }
         }
     }
