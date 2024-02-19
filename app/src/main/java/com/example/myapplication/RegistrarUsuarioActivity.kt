@@ -114,7 +114,7 @@ class RegistrarUsuarioActivity : AppCompatActivity() {
                             registrarEnBaseDeDatos(idUsuario, nombre, apellidos, email, password, tipoUsuario)
                         } else {
                             // Ha fallado el registro
-                            Toast.makeText(baseContext, "Error en el registro.", Toast.LENGTH_SHORT,).show()
+                            Toast.makeText(baseContext, "Hay una cuenta con ese email", Toast.LENGTH_SHORT,).show()
                         }
                     }
             }
