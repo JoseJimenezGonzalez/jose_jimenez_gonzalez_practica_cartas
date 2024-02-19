@@ -44,8 +44,6 @@ class PrincipalClienteActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
 
-    private lateinit var auth: FirebaseAuth
-
     @Inject
     lateinit var dbRef: DatabaseReference
 
@@ -101,18 +99,16 @@ class PrincipalClienteActivity : AppCompatActivity() {
 
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
                     val pojoReservaCarta = snapshot.getValue(ReservarCarta::class.java)
-                    if (pojoReservaCarta != null) {
-                        if (!pojoReservaCarta.idNotificacion.equals(androidId) && pojoReservaCarta.idUsuario == idUsuario) {
-                            val estadoActual = pojoReservaCarta.estado
-                            if (estadoActual == "preparado") {
-                                // Aquí manejas la notificación para pedidos que pasaron de "en preparación" a "preparado"
-                                dbRef.child("tienda").child("reservas_carta").child(pojoReservaCarta.idReserva!!)
-                                    .child("estado_noti").setValue(Estado.NOTIFICADO)
-                                generarNotificacion(generador.incrementAndGet(), pojoReservaCarta,
-                                    "Tu pedido de " + pojoReservaCarta.nombreCarta + " está preparado.",
-                                    "Pedido preparado",
-                                    PrincipalClienteActivity::class.java)
-                            }
+                    if (pojoReservaCarta != null && !pojoReservaCarta.idNotificacion.equals(androidId) && pojoReservaCarta.idUsuario == idUsuario) {
+                        val estadoActual = pojoReservaCarta.estado
+                        if (estadoActual == "preparado") {
+                            // Aquí manejas la notificación para pedidos que pasaron de "en preparación" a "preparado"
+                            dbRef.child("tienda").child("reservas_carta").child(pojoReservaCarta.idReserva!!)
+                                .child("estadoNotificacion").setValue(Estado.NOTIFICADO)
+                            generarNotificacion(generador.incrementAndGet(), pojoReservaCarta,
+                                "Tu pedido de " + pojoReservaCarta.nombreCarta + " está preparado.",
+                                "Pedido preparado",
+                                PrincipalClienteActivity::class.java)
                         }
                     }
                 }
@@ -158,7 +154,7 @@ class PrincipalClienteActivity : AppCompatActivity() {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK //Para evitar bugs en la aplicacion
         }
 
-        actividad.putExtra("juego", pojo)
+        actividad.putExtra("carta", pojo)
 
         val pendingIntent =
             PendingIntent.getActivity(this, 0, actividad, PendingIntent.FLAG_IMMUTABLE)
@@ -182,7 +178,7 @@ class PrincipalClienteActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun crearCanalNotificaciones() {
         val nombre = "canal_basico"
-        val id = "Canal de prueba"
+        val id = "canal cliente"
         val descripcion = "Notificacion basica"
         val importancia = NotificationManager.IMPORTANCE_DEFAULT
 

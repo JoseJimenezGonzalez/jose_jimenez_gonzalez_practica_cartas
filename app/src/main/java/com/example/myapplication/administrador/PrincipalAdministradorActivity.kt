@@ -81,7 +81,7 @@ class PrincipalAdministradorActivity : AppCompatActivity() {
                     val pojoReservaCarta = snapshot.getValue(ReservarCarta::class.java)
                     if (!pojoReservaCarta!!.idNotificacion.equals(androidId) && pojoReservaCarta!!.estadoNotificacion == Estado.COMPRADO) {
                         dbRef.child("tienda").child("reservas_carta").child(pojoReservaCarta.idCarta!!)
-                            .child("estado_noti").setValue(Estado.NOTIFICADO)
+                            .child("estadoNotificacion").setValue(Estado.NOTIFICADO)
                         generarNotificacion(generador.incrementAndGet(), pojoReservaCarta,
                             "Se ha vendido " + pojoReservaCarta.nombreCarta,
                             "Nueva venta",
@@ -132,7 +132,7 @@ class PrincipalAdministradorActivity : AppCompatActivity() {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK //Para evitar bugs en la aplicacion
         }
 
-        actividad.putExtra("juego", pojo)
+        actividad.putExtra("carta", pojo)
 
         val pendingIntent =
             PendingIntent.getActivity(this, 0, actividad, PendingIntent.FLAG_IMMUTABLE)
