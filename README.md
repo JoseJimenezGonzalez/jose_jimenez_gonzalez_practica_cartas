@@ -1,5 +1,7 @@
 ﻿# practica_final_curso
 
+ probar en pixel 7 pro
+
  Usuario administrador: administrador@gmail.com
  contraseña: administrador
 
